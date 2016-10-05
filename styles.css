@@ -1,0 +1,147 @@
+quiz .answer .checkbox {
+    margin-right: 1rem;
+}
+
+.ui.grid {
+    width: 100%;
+}
+
+.ui.grid.question {
+    background-color: #fffacc;
+}
+
+.ui.grid.result .text {
+    line-height: 10rem;
+}
+
+.ui.grid.result.good .text {
+    background-color: #BBFFBB;
+}
+
+.ui.grid.result.good .text:after {
+    content: "   👍";
+}
+
+.ui.grid.result.bad .text:after {
+    content: "   👎";
+}
+
+.ui.grid.result.ok .text:after {
+    content: "   👌";
+}
+
+.ui.grid.result.bad .text {
+    background-color: #FFCCCC;
+}
+
+.ui.grid.result.ok .text {
+    background-color: #fffacc;
+}
+
+.ui.grid.question img {
+    width: 100%;
+}
+
+.ui.menu .item img.logo {
+    margin-right: 1.5em;
+}
+
+.is-correct {
+    background-color: #BBFFBB;
+}
+
+button:disabled {
+    color: #cccccc;
+}
+
+.is-incorrect {
+    background-color: #FFBBBB;
+}
+
+.header, .header h1 {
+    width: 100%;
+    text-align: center;
+}
+
+form.ui.segment.form {
+    background-color: #F1F9FF;
+    margin-top: 2em;
+}
+
+form.ui img {
+    height: 300px;
+}
+
+quiz-question .question {
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+form.form:after {
+    content: '';
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+.votes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #E6E6E6;
+    padding: 1em 0;
+    border-radius: 5px;
+}
+
+.ui.grid.posts {
+    margin-top: 2em;
+}
+
+.meta {
+    color: #9A9A9A
+}
+
+.ui.grid > .row > .column.votes {
+    display: flex;
+}
+
+ul.ui.list li:before {
+    content: '';
+}
+
+.voters {
+    clear: both;
+    width: 100%;
+}
+
+.ui.text.container .question, .ui.text.container .result .text {
+    font-size: 2.5rem;
+}
+
+h1.ui.header {
+    line-height: 5rem;
+    margin: 0 0 1rem 0;
+}
+
+@media only screen and (max-width: 767px) {
+    .ui.container {
+        margin: 0 !important;
+        width: 100%;
+    }
+
+    .ui.text.container .question, .ui.text.container .result .text {
+        font-size: 1.5rem;
+    }
+
+    h1.ui.header {
+        font-size: 1.5rem;
+        line-height: 4rem;
+        margin-bottom: -1rem;
+    }
+
+    .ui.grid {
+        margin: 0 !important;
+    }
+}

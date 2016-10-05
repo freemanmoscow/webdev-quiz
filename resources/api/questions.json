@@ -1,0 +1,76 @@
+{
+  "questions": [
+    {
+      "question": "What technology is this?",
+      "image": "resources/images/logo0001.svg",
+      "answered": "false",
+      "answers": [
+        "Node.js",
+        "Backbone.js",
+        "Angular.js",
+        "Docker"
+      ],
+      "correctAnswer": "2"
+    },
+    {
+      "question": "What technology is this?",
+      "image": "resources/images/logo0002.png",
+      "answered": "false",
+      "answers": [
+        "Node.js",
+        "Backbone.js",
+        "TypeScript",
+        "Grunt"
+      ],
+      "correctAnswer": "0"
+    },
+    {
+      "question": "What is this?",
+      "image": "resources/images/logo0003.png",
+      "answered": "false",
+      "answers": [
+        "A framework",
+        "An IDE",
+        "A task manager",
+        "Some nonsense"
+      ],
+      "correctAnswer": "1"
+    },
+    {
+      "question": "What is this?",
+      "image": "resources/images/logo0004.png",
+      "answered": "false",
+      "answers": [
+        "An API for asynchronous programming with observable streams",
+        "JavaScript utility library delivering modularity",
+        "JavaScript library based on the model–view–presenter (MVP)",
+        "Sushi Restaurant"
+      ],
+      "correctAnswer": "0"
+    },
+    {
+      "question": "What is this?",
+      "image": "resources/images/logo0005.png",
+      "answered": "false",
+      "answers": [
+        "Egyptian hieroglyph",
+        "DevOps Tool",
+        "Browser",
+        "Functional library for JavaScript programmers"
+      ],
+      "correctAnswer": "3"
+    },
+    {
+      "question": "What is a \"Two Pizza Team?\"",
+      "image": "",
+      "answered": "false",
+      "answers": [
+        "Super heroes team",
+        "A famous hacker group",
+        "The optimal dev team size",
+        "Most famous Silicon Valley pizzeria"
+      ],
+      "correctAnswer": "2"
+    }
+  ]
+}
