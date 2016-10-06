@@ -31,7 +31,7 @@ Then visit [http://localhost:8080](http://localhost:8080) in your browser. You s
 
 In the case where it doesn't work, the first thing to try is looking at the developer console in your browser.
 
-If that doesn't work, [emai me](mail:pavel.usmanov@gmail.com)!
+If that doesn't work, [email me](mailto:pavel.usmanov@gmail.com)!
 
 ## Other Files (advanced)
 
