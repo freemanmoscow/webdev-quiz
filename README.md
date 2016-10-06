@@ -39,5 +39,5 @@ If that doesn't work, [email me](mailto:pavel.usmanov@gmail.com)!
 
 - `tsconfig.json` - this is instructions for our TypeScript compiler
 - `tslint.json` - `tslint` is a program and helps enforce rules about code style. The `tslint.json` is the config file that specifies conventions for this project.
-- `vendor` - for this project we're using [Semantic-UI](http://semantic-ui.com/) for the CSS. We've included the CSS files from Semantic here.
+- `vendor` - for this project we're using [Materialize](http://http://materializecss.com//) for the CSS.
 - `resources` - this is where we store a few images
