@@ -1,4 +1,4 @@
-# ng-book 2: Simple Reddit-like App
+# Web Dev Quiz - everything related to web dev world
 
 > A simple voting app that resembles a minimal-reddit link voting app in Angular 2.
 
