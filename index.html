@@ -2,34 +2,66 @@
 <html>
 
 <head>
-    <title>Web Dev Quiz</title>
-    <link rel="icon" type="image/png" href="resources/images/favicon-32x32.png" sizes="32x32" />
-    <link rel="icon" href="resources/images/favicon.ico" />
-    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!-- Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
-    <script src="node_modules/es6-shim/es6-shim.js"></script>
-    <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
+  <title>Web Dev Quiz</title>
+  <link rel="icon" type="image/png" href="resources/images/favicon-32x32.png" sizes="32x32"/>
+  <link rel="icon" href="resources/images/favicon.ico"/>
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Libraries -->
+  <script src="node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  <script src="node_modules/es6-shim/es6-shim.js"></script>
+  <script src="node_modules/zone.js/dist/zone.js"></script>
+  <script src="node_modules/reflect-metadata/Reflect.js"></script>
+  <script src="node_modules/systemjs/dist/system.src.js"></script>
 
-    <!-- Stylesheet -->
-    <!-- link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css" -->
-    <link rel="stylesheet" type="text/css" href="resources/vendor/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="styles.css">
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+  <!-- link rel="stylesheet" type="text/css" href="resources/vendor/semantic.min.css" -->
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 
-<body>
+<body class="cyan lighten-1">
 
-    <!-- Configure System.js, our module loader -->
-    <script src="resources/systemjs.config.js"></script>
-    <script>
-        System.import('app')
-            .then(null, console.error.bind(console));
-    </script>
-
-    <h1 class="ui header">Guess the webdev technology</h1>
-    <quiz>Loading...</quiz>
+<!-- Configure System.js, our module loader -->
+<script src="resources/systemjs.config.js"></script>
+<script>
+  System.import('app')
+    .then(null, console.error.bind(console));
+</script>
+<div class="container">
+  <div class="row">
+    <nav class="col s12 l10 offset-l1 white">
+      <div class="nav-wrapper">
+        <a class="brand-logo">Web Dev Quiz</a>
+        <ul class="right hide-on-med-and-down">
+          <li><a class="menuitem" onclick="location.reload();"><i class="material-icons blue-grey-text">refresh</i></a></li>
+          <li class="github-button">
+            <a class="waves-effect waves-light btn" href="https://github.com/freemanmoscow/webdev-quiz" target="_blank">
+              <i class="material-icons left">code</i>
+              GitHub
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <quiz>
+      <div id="preloader" class="col s12 center">
+        <div class="preloader-wrapper valign big active">
+          <div class="spinner-layer spinner-blue-only">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </quiz>
+    </div>
+  </div>
+</div>
 
 
 </body>

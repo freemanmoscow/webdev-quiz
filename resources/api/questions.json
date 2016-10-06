@@ -71,6 +71,78 @@
         "Most famous Silicon Valley pizzeria"
       ],
       "correctAnswer": "2"
+    },
+    {
+      "question": "What is this?",
+      "image": "resources/images/logo0006.png",
+      "answered": "false",
+      "answers": [
+        "Erlang - A concurrent functional programming language",
+        "Elm - A functional language that compiles to JavaScript",
+        "Ext JS - A JavaScript framework for cross platform web apps",
+        "Trumps construction company"
+      ],
+      "correctAnswer": "1"
+    },
+    {
+      "question": "What is this?",
+      "image": "resources/images/logo0007.png",
+      "answered": "false",
+      "answers": [
+        "JScript",
+        "Java Server",
+        "Achronym for \"Just saying\"",
+        "Java Script"
+      ],
+      "correctAnswer": "3"
+    },
+    {
+      "question": "What is this?",
+      "image": "resources/images/logo0008.png",
+      "answered": "false",
+      "answers": [
+        "Plunker",
+        "Docker",
+        "Floater",
+        "Moby Dick"
+      ],
+      "correctAnswer": "1"
+    },
+    {
+      "question": "What did they make?",
+      "image": "resources/images/logo0009.png",
+      "answered": "false",
+      "answers": [
+        "Pacman",
+        "Galaga",
+        "Internet",
+        "Mario Bros"
+      ],
+      "correctAnswer": "3"
+    },
+    {
+      "question": "What is this?",
+      "image": "resources/images/logo0010.svg",
+      "answered": "false",
+      "answers": [
+        "Materialize",
+        "Webpack",
+        "Polymer",
+        "New Microsoft logo"
+      ],
+      "correctAnswer": "0"
+    },
+    {
+      "question": "What is this?",
+      "image": "resources/images/logo0011.png",
+      "answered": "false",
+      "answers": [
+        "Ionic",
+        "Polymer",
+        "Titanium",
+        "Iridium"
+      ],
+      "correctAnswer": "1"
     }
   ]
 }
