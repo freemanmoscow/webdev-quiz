@@ -1,6 +1,7 @@
-# Web Dev Quiz - everything related to web dev world
+# WebDev Quiz - A quiz about everything related to WebDev world
 
-> A simple voting app that resembles a minimal-reddit link voting app in Angular 2.
+> A simple quiz app to help you learn WebDev technologies and fun facts.
+> You can take a look at http://webdev-quiz.paperplane.io/ for production version.
 
 ## Dependencies
 
@@ -41,3 +42,4 @@ If that doesn't work, [email me](mailto:pavel.usmanov@gmail.com)!
 - `tslint.json` - `tslint` is a program and helps enforce rules about code style. The `tslint.json` is the config file that specifies conventions for this project.
 - `vendor` - for this project we're using [Materialize](http://http://materializecss.com//) for the CSS.
 - `resources` - this is where we store a few images
+- resources/api/questions.json - to add more quiz questions
