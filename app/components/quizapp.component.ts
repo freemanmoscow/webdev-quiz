@@ -1,14 +1,23 @@
-import {Component, OnInit, OnDestroy} from '@angular/core';
+import {Component, NgModule, OnInit, OnDestroy} from '@angular/core';
 import {Question, NextQuestion} from '../interfaces/interfaces';
 import {QuizService} from '../services/question.service';
-import {HTTP_PROVIDERS} from '@angular/http';
+import {HttpModule} from '@angular/http';
 import {QuestionComponent} from '../components/question.component';
 import {ResultComponent} from '../components/result.component';
 
+NgModule({
+    imports: [ HttpModule, QuizService, QuestionComponent, ResultComponent ],
+    declarations: [ QuestionComponent, ResultComponent, QuizApp ],  //<----here
+    providers: [ HttpModule, QuizService ],
+    bootstrap:    [ QuizApp ]
+})
+
+export class MyApp {}
+
 @Component({
     selector: 'quiz',
-    directives: [QuestionComponent, ResultComponent],
-    providers: [HTTP_PROVIDERS, QuizService],
+    //directives: [QuestionComponent, ResultComponent],
+    //providers: [HttpModule, QuizService],
     template: `
     <div id="quiz center-align" class="col s12 l10 offset-l1" *ngIf="_isLoaded">
         <quiz-question class="card horizontal white" *ngIf="!_showResult"

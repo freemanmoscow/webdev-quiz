@@ -1,7 +1,7 @@
 (function (global) {
   // map tells the System loader where to look for things
   var map = {
-    'app': './app',
+    'app': 'app',
     'question.service': 'app/question.service.js',
     'rxjs': 'node_modules/rxjs',
     '@angular': 'node_modules/@angular'
@@ -9,7 +9,7 @@
 
   // packages tells the System loader how to load when no filename and/or no extension
   var packages = {
-    'app': {main: 'app.js', defaultExtension: 'js'},
+    'app': {main: 'app', defaultExtension: 'js'},
     'rxjs': {defaultExtension: 'js'}
   };
 
