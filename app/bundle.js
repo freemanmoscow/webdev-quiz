@@ -41,12 +41,12 @@ var QuestionComponent = (function () {
     QuestionComponent = __decorate([
         core_1.Component({
             selector: 'quiz-question',
-            inputs: ['question'],
+            inputs: ['question', 'totalQuestions', 'currentQuestion'],
             outputs: ['next'],
             host: {
                 class: 'row'
             },
-            template: "\n      <div class=\"card-stacked\">\n        <div class=\"card-content\">\n            <div class=\"row card-panel question grey lighten-3\">\n              <div class=\"col s3 m2\" *ngIf=\"question.image\"><div class=\"image valign-wrapper\"><img class=\"valign\" [src]=\"question.image\"></div></div>\n              <div class=\"col valign-wrapper text s9\"\n                [class.m12]=\"!question.image\"\n                [class.m10]=\"question.image\"><h5 class=\"valign\">{{ question.question }}</h5></div>\n            </div>\n            <div class=\"row answers\">\n              <div class=\"lighten-4 col s12 l6 valign-wrapper card-panel waves-effect waves-light\" *ngFor=\"let answer of question.answers; let i = index;\"\n                [class.red]=\"isIncorrect(i.toString())\"\n                [class.green]=\"isCorrect(i.toString())\"\n                [class.yellow]=\"isDisabled()\"\n                [class.disabled]=\"!isDisabled()\"\n                (click)=\"selectAnswer(i.toString())\">\n                  <div class=\"valign answer\">{{ answer }}</div>\n              </div>\n            </div>\n          </div>\n        <div class=\"card-action center\">\n          <a class=\"waves-effect waves-light btn-large\" (click)=\"nextQuestion()\" [class.disabled]=\"isDisabled()\">Next</a>\n        </div>\n      </div>\n"
+            template: "\n      <div class=\"card-stacked\">\n        <div class=\"card-content\">\n            <div class=\"row card-panel question grey lighten-3\">\n              <div class=\"col s3 m2\" *ngIf=\"question.image\"><div class=\"image valign-wrapper\"><img class=\"valign\" [src]=\"question.image\"></div></div>\n              <div class=\"col valign-wrapper text s9\"\n                [class.m12]=\"!question.image\"\n                [class.m10]=\"question.image\"><h5 class=\"valign\">{{ question.question }}</h5></div>\n            </div>\n            <div class=\"row answers\">\n              <div class=\"lighten-4 col s12 l6 valign-wrapper card-panel waves-effect waves-light\" *ngFor=\"let answer of question.answers; let i = index;\"\n                [class.red]=\"isIncorrect(i.toString())\"\n                [class.green]=\"isCorrect(i.toString())\"\n                [class.yellow]=\"isDisabled()\"\n                [class.disabled]=\"!isDisabled()\"\n                (click)=\"selectAnswer(i.toString())\">\n                  <div class=\"valign answer\">{{ answer }}</div>\n              </div>\n            </div>\n          </div>\n        <div class=\"card-action center\">\n          <a class=\"waves-effect waves-light btn-large\" (click)=\"nextQuestion()\" [class.disabled]=\"isDisabled()\">Next</a>\n        </div>\n        <div class=\"progress\">\n          <div class=\"determinate orange\" [style.width]=\"(currentQuestion / totalQuestions * 100) + '%'\"></div>\n        </div>\n      </div>\n"
         }), 
         __metadata('design:paramtypes', [])
     ], QuestionComponent);
@@ -75,7 +75,7 @@ var QuizApp = (function () {
         this.Quiz = Quiz;
         this._isLoaded = false;
         this._showResult = false;
-        this._maxQuestions = 1;
+        this._maxQuestions = 10;
         this._currentQuestion = 0;
     }
     QuizApp.prototype.ngOnInit = function () {
@@ -93,7 +93,7 @@ var QuizApp = (function () {
     QuizApp.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();
     };
-    QuizApp.prototype.onNotify = function (message) {
+    QuizApp.prototype.onNext = function (message) {
         if (message.action === 'next') {
             if (message.correct)
                 this.result.correct++;
@@ -123,7 +123,7 @@ var QuizApp = (function () {
             selector: 'quiz',
             directives: [question_component_1.QuestionComponent, result_component_1.ResultComponent],
             providers: [http_1.HTTP_PROVIDERS, question_service_1.QuizService],
-            template: "\n    <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n        <quiz-question class=\"card horizontal white\" *ngIf=\"!_showResult\"\n          [question]=\"question[_currentQuestion]\"\n          (next)=\"onNotify($event)\">\n        </quiz-question>\n        <quiz-result class=\"card horizontal white\"\n          *ngIf=\"_showResult\"\n          [result]=\"result\"\n          (restart)=\"onRestart($event)\">\n        </quiz-result>\n    </div>\n "
+            template: "\n    <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n        <quiz-question class=\"card horizontal white\" *ngIf=\"!_showResult\"\n          [question]=\"question[_currentQuestion]\"\n          [totalQuestions]=\"result.total\"\n          [currentQuestion]=\"_currentQuestion\"\n          (next)=\"onNext($event)\">\n        </quiz-question>\n        <quiz-result class=\"card horizontal white\"\n          *ngIf=\"_showResult\"\n          [result]=\"result\"\n          (restart)=\"onRestart($event)\">\n        </quiz-result>\n    </div>\n "
         }), 
         __metadata('design:paramtypes', [question_service_1.QuizService])
     ], QuizApp);
@@ -161,7 +161,7 @@ var ResultComponent = (function () {
             host: {
                 class: 'row'
             },
-            template: "\n <div class=\"card-stacked\">\n     <div class=\"card-content\">\n        <div class=\"result card-panel s12 l8 offset-l2 valign-wrapper\" [class.bad]=\"resultGrade() <= 1\" [class.ok]=\"resultGrade() === 2\" [class.good]=\"resultGrade() >= 3\">\n            <div class=\"valign text\">Result: {{ result.correct }} out of {{ result.total }} correct</div>\n        </div>\n    </div>\n    <div class=\"card-action center\">\n      <a class=\"waves-effect waves-light btn-large\" (click)=\"resetQuestions()\">Restart Quiz</a>\n    </div>\n </div>\n"
+            template: "\n <div class=\"card-stacked\">\n     <div class=\"card-content\">\n        <div class=\"result card-panel s12 l8 offset-l2 valign-wrapper\" [class.bad]=\"resultGrade() <= 1\" [class.ok]=\"resultGrade() === 2\" [class.good]=\"resultGrade() >= 3\">\n            <div class=\"valign text\">Result: {{ result.correct }} out of {{ result.total }} correct</div>\n        </div>\n    </div>\n    <div class=\"card-action center\">\n      <a class=\"waves-effect waves-light btn-large\" (click)=\"resetQuestions()\">Restart Quiz</a>\n    </div>\n    <div class=\"progress\">\n       <div class=\"determinate orange\" [style.width]=\"'100%'\"></div>\n     </div>\n </div>\n"
         }), 
         __metadata('design:paramtypes', [])
     ], ResultComponent);

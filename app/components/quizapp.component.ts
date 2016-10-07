@@ -13,7 +13,9 @@ import {ResultComponent} from '../components/result.component';
     <div id="quiz center-align" class="col s12 l10 offset-l1" *ngIf="_isLoaded">
         <quiz-question class="card horizontal white" *ngIf="!_showResult"
           [question]="question[_currentQuestion]"
-          (next)="onNotify($event)">
+          [totalQuestions]="result.total"
+          [currentQuestion]="_currentQuestion"
+          (next)="onNext($event)">
         </quiz-question>
         <quiz-result class="card horizontal white"
           *ngIf="_showResult"
@@ -36,7 +38,7 @@ export class QuizApp {
     constructor(private Quiz: QuizService) {
         this._isLoaded = false;
         this._showResult = false;
-        this._maxQuestions = 1;
+        this._maxQuestions = 10;
         this._currentQuestion = 0;
     }
 
@@ -56,7 +58,7 @@ export class QuizApp {
         this.sub.unsubscribe();
     }
 
-    onNotify(message: NextQuestion): void {
+    onNext(message: NextQuestion): void {
         if (message.action === 'next') {
             if (message.correct)
                 this.result.correct++;

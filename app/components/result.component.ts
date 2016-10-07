@@ -17,6 +17,9 @@ import {Component, EventEmitter} from '@angular/core';
     <div class="card-action center">
       <a class="waves-effect waves-light btn-large" (click)="resetQuestions()">Restart Quiz</a>
     </div>
+    <div class="progress">
+       <div class="determinate orange" [style.width]="'100%'"></div>
+     </div>
  </div>
 `
 })

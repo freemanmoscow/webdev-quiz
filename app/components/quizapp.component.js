@@ -18,7 +18,7 @@ var QuizApp = (function () {
         this.Quiz = Quiz;
         this._isLoaded = false;
         this._showResult = false;
-        this._maxQuestions = 1;
+        this._maxQuestions = 10;
         this._currentQuestion = 0;
     }
     QuizApp.prototype.ngOnInit = function () {
@@ -36,7 +36,7 @@ var QuizApp = (function () {
     QuizApp.prototype.ngOnDestroy = function () {
         this.sub.unsubscribe();
     };
-    QuizApp.prototype.onNotify = function (message) {
+    QuizApp.prototype.onNext = function (message) {
         if (message.action === 'next') {
             if (message.correct)
                 this.result.correct++;
@@ -66,7 +66,7 @@ var QuizApp = (function () {
             selector: 'quiz',
             directives: [question_component_1.QuestionComponent, result_component_1.ResultComponent],
             providers: [http_1.HTTP_PROVIDERS, question_service_1.QuizService],
-            template: "\n    <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n        <quiz-question class=\"card horizontal white\" *ngIf=\"!_showResult\"\n          [question]=\"question[_currentQuestion]\"\n          (next)=\"onNotify($event)\">\n        </quiz-question>\n        <quiz-result class=\"card horizontal white\"\n          *ngIf=\"_showResult\"\n          [result]=\"result\"\n          (restart)=\"onRestart($event)\">\n        </quiz-result>\n    </div>\n "
+            template: "\n    <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n        <quiz-question class=\"card horizontal white\" *ngIf=\"!_showResult\"\n          [question]=\"question[_currentQuestion]\"\n          [totalQuestions]=\"result.total\"\n          [currentQuestion]=\"_currentQuestion\"\n          (next)=\"onNext($event)\">\n        </quiz-question>\n        <quiz-result class=\"card horizontal white\"\n          *ngIf=\"_showResult\"\n          [result]=\"result\"\n          (restart)=\"onRestart($event)\">\n        </quiz-result>\n    </div>\n "
         }), 
         __metadata('design:paramtypes', [question_service_1.QuizService])
     ], QuizApp);

@@ -3,7 +3,7 @@ import {Question, NextQuestion} from '../interfaces/interfaces';
 
 @Component({
     selector: 'quiz-question',
-    inputs: ['question'],
+    inputs: ['question', 'totalQuestions', 'currentQuestion'],
     outputs: ['next'],
     host: {
         class: 'row'
@@ -30,6 +30,9 @@ import {Question, NextQuestion} from '../interfaces/interfaces';
           </div>
         <div class="card-action center">
           <a class="waves-effect waves-light btn-large" (click)="nextQuestion()" [class.disabled]="isDisabled()">Next</a>
+        </div>
+        <div class="progress">
+          <div class="determinate orange" [style.width]="(currentQuestion / totalQuestions * 100) + '%'"></div>
         </div>
       </div>
 `
