@@ -15,7 +15,7 @@ import {Component} from '@angular/core';
         </div>
     </div>
     <div class="card-action center">
-      <a class="waves-effect waves-light btn-large" (click)="resetQuestions()" [class.disabled]="isDisabled()">Restart Quiz</a>
+      <a class="waves-effect waves-light btn-large" (click)="resetQuestions()">Restart Quiz</a>
     </div>
  </div>
 `
@@ -29,6 +29,7 @@ export class ResultComponent {
 
     resetQuestions(): void {
         // TODO: Figure out how to reload
+        location.reload();
     }
 
     resultGrade(): number {

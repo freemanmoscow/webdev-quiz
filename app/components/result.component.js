@@ -14,6 +14,7 @@ var ResultComponent = (function () {
     }
     ResultComponent.prototype.resetQuestions = function () {
         // TODO: Figure out how to reload
+        location.reload();
     };
     ResultComponent.prototype.resultGrade = function () {
         return Math.ceil(this.result.correct / this.result.total * 3);
@@ -26,7 +27,7 @@ var ResultComponent = (function () {
             host: {
                 class: 'row'
             },
-            template: "\n <div class=\"card-stacked\">\n     <div class=\"card-content\">\n        <div class=\"result card-panel s12 l8 offset-l2 valign-wrapper\" [class.bad]=\"resultGrade() <= 1\" [class.ok]=\"resultGrade() === 2\" [class.good]=\"resultGrade() >= 3\">\n            <div class=\"valign text\">Result: {{ result.correct }} out of {{ result.total }} correct</div>\n        </div>\n    </div>\n    <div class=\"card-action center\">\n      <a class=\"waves-effect waves-light btn-large\" (click)=\"resetQuestions()\" [class.disabled]=\"isDisabled()\">Restart Quiz</a>\n    </div>\n </div>\n"
+            template: "\n <div class=\"card-stacked\">\n     <div class=\"card-content\">\n        <div class=\"result card-panel s12 l8 offset-l2 valign-wrapper\" [class.bad]=\"resultGrade() <= 1\" [class.ok]=\"resultGrade() === 2\" [class.good]=\"resultGrade() >= 3\">\n            <div class=\"valign text\">Result: {{ result.correct }} out of {{ result.total }} correct</div>\n        </div>\n    </div>\n    <div class=\"card-action center\">\n      <a class=\"waves-effect waves-light btn-large\" (click)=\"resetQuestions()\">Restart Quiz</a>\n    </div>\n </div>\n"
         }), 
         __metadata('design:paramtypes', [])
     ], ResultComponent);
