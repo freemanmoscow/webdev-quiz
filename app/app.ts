@@ -1,7 +1,7 @@
 import {enableProdMode} from '@angular/core';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {MyApp} from './components/quizapp.component';
+import {bootstrap} from '@angular/platform-browser-dynamic';
+import {QuizApp} from './components/quizapp.component';
 
 enableProdMode();
 
-platformBrowserDynamic().bootstrapModule(MyApp);
+bootstrap(QuizApp);

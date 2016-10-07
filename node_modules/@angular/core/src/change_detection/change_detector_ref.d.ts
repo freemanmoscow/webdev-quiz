@@ -40,9 +40,12 @@ export declare abstract class ChangeDetectorRef {
      *   template: `
      *     <cmp><cmp>
      *   `,
+     *   directives: [Cmp]
      * })
      * class App {
      * }
+     *
+     * bootstrap(App);
      * ```
      */
     abstract markForCheck(): void;
@@ -78,6 +81,7 @@ export declare abstract class ChangeDetectorRef {
      *   template: `
      *     <li *ngFor="let d of dataProvider.data">Data {{d}}</lig>
      *   `,
+     *   directives: [NgFor]
      * })
      * class GiantList {
      *   constructor(private ref: ChangeDetectorRef, private dataProvider:DataProvider) {
@@ -94,9 +98,12 @@ export declare abstract class ChangeDetectorRef {
      *   template: `
      *     <giant-list><giant-list>
      *   `,
+     *   directives: [GiantList]
      * })
      * class App {
      * }
+     *
+     * bootstrap(App);
      * ```
      */
     abstract detach(): void;
@@ -158,7 +165,7 @@ export declare abstract class ChangeDetectorRef {
      * @Component({
      *   selector: 'live-data',
      *   inputs: ['live'],
-     *   template: 'Data: {{dataProvider.data}}'
+     *   template: `Data: {{dataProvider.data}}`
      * })
      * class LiveData {
      *   constructor(private ref: ChangeDetectorRef, private dataProvider:DataProvider) {}
@@ -178,10 +185,13 @@ export declare abstract class ChangeDetectorRef {
      *     Live Update: <input type="checkbox" [(ngModel)]="live">
      *     <live-data [live]="live"><live-data>
      *   `,
+     *   directives: [LiveData, FORM_DIRECTIVES]
      * })
      * class App {
      *   live = true;
      * }
+     *
+     * bootstrap(App);
      * ```
      */
     abstract reattach(): void;
