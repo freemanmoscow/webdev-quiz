@@ -9,9 +9,9 @@
     "go": "concurrent \"npm run tsc:w\" \"npm run serve\" ",
     "start": "./node_modules/.bin/live-server --host=webdev-quiz.herokuapp.com --port=process.env.PORT .",
     "typings": "typings install",
-    "serve": "http-server . -p 8080",
+    "serve": "npm run build && http-server . -p 8080",
     "postinstall": "npm run typings",
-    "build": "npm run clean && tsc",
+    "build": "npm run clean && tsc && cp ./app/app.js ./app/app.min.js",
     "build_prod": "npm run build && ./node_modules/.bin/browserify -s app ./app/app.js > ./app/bundle.js && npm run minify",
     "minify": "./node_modules/.bin/uglifyjs app/bundle.js --screw-ie8 --compress --mangle --output app/app.min.js"
   },

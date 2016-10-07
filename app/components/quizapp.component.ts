@@ -10,36 +10,43 @@ import {ResultComponent} from '../components/result.component';
     directives: [QuestionComponent, ResultComponent],
     providers: [HTTP_PROVIDERS, QuizService],
     template: `
-    <div id="quiz center-align" class="col s12 l10 offset-l1" *ngIf="isLoaded">
-        <quiz-question class="card horizontal white" *ngIf="!_showResult" [question]="questions[currentQuestion]" (next)="onNotify($event)"></quiz-question>
-        <quiz-result class="card horizontal white" *ngIf="_showResult" [result]="result"></quiz-result>
+    <div id="quiz center-align" class="col s12 l10 offset-l1" *ngIf="_isLoaded">
+        <quiz-question class="card horizontal white" *ngIf="!_showResult"
+          [question]="question[_currentQuestion]"
+          (next)="onNotify($event)">
+        </quiz-question>
+        <quiz-result class="card horizontal white"
+          *ngIf="_showResult"
+          [result]="result"
+          (restart)="onRestart($event)">
+        </quiz-result>
     </div>
  `
 })
 
 export class QuizApp {
-    isLoaded: boolean;
-    currentQuestion: number;
-    questions: Question[];
-    maxQuestions: number;
+    private _isLoaded: boolean;
+    private _currentQuestion: number;
+    private _maxQuestions: number;
     private _showResult: boolean;
-    result: {total: number, correct: number};
     private sub: any;
+    result: {total: number, correct: number};
+    question: Question[];
 
     constructor(private Quiz: QuizService) {
-        this.isLoaded = false;
+        this._isLoaded = false;
         this._showResult = false;
-        this.maxQuestions = 10;
-        this.currentQuestion = 0;
+        this._maxQuestions = 1;
+        this._currentQuestion = 0;
     }
 
     ngOnInit() {
         this.sub = this.Quiz.getQuestions().subscribe((response) => {
-            this.questions = response;
-            this.isLoaded = true;
-            this.questions = this.arrayShuffle(this.questions);
+            this.question = response;
+            this._isLoaded = true;
+            this.question = this.arrayShuffle(this.question);
             this.result = {
-                total: this.questions.length < this.maxQuestions ? this.questions.length : this.maxQuestions,
+                total: this.question.length < this._maxQuestions ? this.question.length : this._maxQuestions,
                 correct: 0
             }
         });
@@ -53,11 +60,23 @@ export class QuizApp {
         if (message.action === 'next') {
             if (message.correct)
                 this.result.correct++;
-            if (this.questions[this.currentQuestion + 1] && this.currentQuestion < this.maxQuestions - 1)
-                this.currentQuestion++;
+            if (this.question[this._currentQuestion + 1] && this._currentQuestion < this._maxQuestions - 1)
+                this._currentQuestion++;
             else
                 this._showResult = true;
         }
+    }
+
+    onRestart(message: string) {
+        // TODO: Figure out how to reload
+        if (message === 'restart') {
+            this._isLoaded = false;
+            this._showResult = false;
+            this._maxQuestions = 1;
+            this._currentQuestion = 0;
+            this.ngOnInit();
+        }
+
     }
 
     arrayShuffle<T>(src: T[]): T[] {

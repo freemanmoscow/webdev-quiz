@@ -61,7 +61,6 @@ export class QuestionComponent {
     }
 
     nextQuestion(): void {
-        console.log("emit next");
         this.next.emit({action: 'next', correct: this._selectedAnswer === this.question.correctAnswer});
         this._selectedAnswer = void(0);
     }

@@ -35,7 +35,6 @@ var QuestionComponent = (function () {
         return this._selectedAnswer === undefined;
     };
     QuestionComponent.prototype.nextQuestion = function () {
-        console.log("emit next");
         this.next.emit({ action: 'next', correct: this._selectedAnswer === this.question.correctAnswer });
         this._selectedAnswer = void (0);
     };
@@ -74,19 +73,19 @@ var result_component_1 = require('../components/result.component');
 var QuizApp = (function () {
     function QuizApp(Quiz) {
         this.Quiz = Quiz;
-        this.isLoaded = false;
+        this._isLoaded = false;
         this._showResult = false;
-        this.maxQuestions = 10;
-        this.currentQuestion = 0;
+        this._maxQuestions = 1;
+        this._currentQuestion = 0;
     }
     QuizApp.prototype.ngOnInit = function () {
         var _this = this;
         this.sub = this.Quiz.getQuestions().subscribe(function (response) {
-            _this.questions = response;
-            _this.isLoaded = true;
-            _this.questions = _this.arrayShuffle(_this.questions);
+            _this.question = response;
+            _this._isLoaded = true;
+            _this.question = _this.arrayShuffle(_this.question);
             _this.result = {
-                total: _this.questions.length < _this.maxQuestions ? _this.questions.length : _this.maxQuestions,
+                total: _this.question.length < _this._maxQuestions ? _this.question.length : _this._maxQuestions,
                 correct: 0
             };
         });
@@ -98,10 +97,20 @@ var QuizApp = (function () {
         if (message.action === 'next') {
             if (message.correct)
                 this.result.correct++;
-            if (this.questions[this.currentQuestion + 1] && this.currentQuestion < this.maxQuestions - 1)
-                this.currentQuestion++;
+            if (this.question[this._currentQuestion + 1] && this._currentQuestion < this._maxQuestions - 1)
+                this._currentQuestion++;
             else
                 this._showResult = true;
+        }
+    };
+    QuizApp.prototype.onRestart = function (message) {
+        // TODO: Figure out how to reload
+        if (message === 'restart') {
+            this._isLoaded = false;
+            this._showResult = false;
+            this._maxQuestions = 1;
+            this._currentQuestion = 0;
+            this.ngOnInit();
         }
     };
     QuizApp.prototype.arrayShuffle = function (src) {
@@ -114,7 +123,7 @@ var QuizApp = (function () {
             selector: 'quiz',
             directives: [question_component_1.QuestionComponent, result_component_1.ResultComponent],
             providers: [http_1.HTTP_PROVIDERS, question_service_1.QuizService],
-            template: "\n    <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"isLoaded\">\n        <quiz-question class=\"card horizontal white\" *ngIf=\"!_showResult\" [question]=\"questions[currentQuestion]\" (next)=\"onNotify($event)\"></quiz-question>\n        <quiz-result class=\"card horizontal white\" *ngIf=\"_showResult\" [result]=\"result\"></quiz-result>\n    </div>\n "
+            template: "\n    <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n        <quiz-question class=\"card horizontal white\" *ngIf=\"!_showResult\"\n          [question]=\"question[_currentQuestion]\"\n          (next)=\"onNotify($event)\">\n        </quiz-question>\n        <quiz-result class=\"card horizontal white\"\n          *ngIf=\"_showResult\"\n          [result]=\"result\"\n          (restart)=\"onRestart($event)\">\n        </quiz-result>\n    </div>\n "
         }), 
         __metadata('design:paramtypes', [question_service_1.QuizService])
     ], QuizApp);
@@ -136,9 +145,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ResultComponent = (function () {
     function ResultComponent() {
+        this.restart = new core_1.EventEmitter();
     }
     ResultComponent.prototype.resetQuestions = function () {
-        // TODO: Figure out how to reload
+        this.restart.emit("restart");
     };
     ResultComponent.prototype.resultGrade = function () {
         return Math.ceil(this.result.correct / this.result.total * 3);
@@ -151,7 +161,7 @@ var ResultComponent = (function () {
             host: {
                 class: 'row'
             },
-            template: "\n <div class=\"card-stacked\">\n     <div class=\"card-content\">\n        <div class=\"result card-panel s12 l8 offset-l2 valign-wrapper\" [class.bad]=\"resultGrade() <= 1\" [class.ok]=\"resultGrade() === 2\" [class.good]=\"resultGrade() >= 3\">\n            <div class=\"valign text\">Result: {{ result.correct }} out of {{ result.total }} correct</div>\n        </div>\n    </div>\n    <div class=\"card-action center\">\n      <a class=\"waves-effect waves-light btn-large\" (click)=\"resetQuestions()\" [class.disabled]=\"isDisabled()\">Restart Quiz</a>\n    </div>\n </div>\n"
+            template: "\n <div class=\"card-stacked\">\n     <div class=\"card-content\">\n        <div class=\"result card-panel s12 l8 offset-l2 valign-wrapper\" [class.bad]=\"resultGrade() <= 1\" [class.ok]=\"resultGrade() === 2\" [class.good]=\"resultGrade() >= 3\">\n            <div class=\"valign text\">Result: {{ result.correct }} out of {{ result.total }} correct</div>\n        </div>\n    </div>\n    <div class=\"card-action center\">\n      <a class=\"waves-effect waves-light btn-large\" (click)=\"resetQuestions()\">Restart Quiz</a>\n    </div>\n </div>\n"
         }), 
         __metadata('design:paramtypes', [])
     ], ResultComponent);

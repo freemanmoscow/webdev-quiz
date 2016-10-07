@@ -26,7 +26,6 @@ var QuestionComponent = (function () {
         return this._selectedAnswer === undefined;
     };
     QuestionComponent.prototype.nextQuestion = function () {
-        console.log("emit next");
         this.next.emit({ action: 'next', correct: this._selectedAnswer === this.question.correctAnswer });
         this._selectedAnswer = void (0);
     };

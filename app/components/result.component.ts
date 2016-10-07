@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter} from '@angular/core';
 
 @Component({
     selector: 'quiz-result',
@@ -23,13 +23,14 @@ import {Component} from '@angular/core';
 
 export class ResultComponent {
     result: {total: number, correct: number};
+    restart: EventEmitter<string>;
 
     constructor() {
+        this.restart = new EventEmitter<string>();
     }
 
     resetQuestions(): void {
-        // TODO: Figure out how to reload
-        location.reload();
+        this.restart.emit("restart");
     }
 
     resultGrade(): number {

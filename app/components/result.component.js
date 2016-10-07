@@ -11,10 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var ResultComponent = (function () {
     function ResultComponent() {
+        this.restart = new core_1.EventEmitter();
     }
     ResultComponent.prototype.resetQuestions = function () {
-        // TODO: Figure out how to reload
-        location.reload();
+        this.restart.emit("restart");
     };
     ResultComponent.prototype.resultGrade = function () {
         return Math.ceil(this.result.correct / this.result.total * 3);
