@@ -1,14 +1,19 @@
 {
-  "name": "ng-book2-reddit",
+  "name": "webdev-quiz",
   "version": "1.0.0",
   "private": true,
   "scripts": {
     "clean": "rm -f ./*.js; rm -f ./*.js.map; rm -f ./intermediates/*.js; rm -f ./intermediates/*.js.map",
     "tsc": "./node_modules/.bin/tsc",
     "tsc:w": "./node_modules/.bin/tsc -w",
-    "serve": "./node_modules/.bin/live-server --host=localhost --port=8080 .",
     "go": "concurrent \"npm run tsc:w\" \"npm run serve\" ",
-    "start": "./node_modules/.bin/live-server --host=webdev-quiz.herokuapp.com --port=process.env.PORT ."
+    "start": "./node_modules/.bin/live-server --host=webdev-quiz.herokuapp.com --port=process.env.PORT .",
+    "typings": "typings install",
+    "serve": "http-server . -p 8080",
+    "postinstall": "npm run typings",
+    "build": "npm run clean && tsc",
+    "build_prod": "npm run build && ./node_modules/.bin/browserify -s app ./app/app.js > ./app/bundle.js && npm run minify",
+    "minify": "./node_modules/.bin/uglifyjs app/bundle.js --screw-ie8 --compress --mangle --output app/app.min.js"
   },
   "license": "ISC",
   "dependencies": {
