@@ -51,7 +51,7 @@ var QuizApp = (function () {
         if (message === 'restart') {
             this._isLoaded = false;
             this._showResult = false;
-            this._maxQuestions = 1;
+            this._maxQuestions = 10;
             this._currentQuestion = 0;
             this.ngOnInit();
         }
