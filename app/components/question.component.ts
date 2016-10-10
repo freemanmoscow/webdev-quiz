@@ -11,7 +11,7 @@ import {Question, NextQuestion} from '../interfaces/interfaces';
     template: `
       <div class="card-stacked">
         <div class="card-content">
-            <div class="row card-panel question grey lighten-3">
+            <div class="row card-panel question grey lighten-3 valign-wrapper">
               <div class="col s3 m2" *ngIf="question.image"><div class="image valign-wrapper"><img class="valign" [src]="question.image"></div></div>
               <div class="col valign-wrapper text s9"
                 [class.m12]="!question.image"

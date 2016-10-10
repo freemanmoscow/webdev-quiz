@@ -86,7 +86,6 @@ quiz-question .row.answers {
 }
 
 .question .text {
-    height: 100px;
     justify-content: center;
 }
 
@@ -128,5 +127,63 @@ quiz-question .row.answers {
     .nav-wrapper .github-button i {
         font-size: 1.3rem;
         line-height: 36px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .card-panel.question {
+        padding: 5px;
+    }
+
+    .card-panel {
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .card .card-content {
+        padding: 5px 20px;
+    }
+
+    .question .image {
+        width: 75px;
+        height: 75px;
+        padding: 10px;
+    }
+
+    .question.row .col {
+        padding: 5px;
+    }
+
+    h5 {
+        font-size: 1.2rem;
+    }
+
+    .row .col.s9 {
+        width: 100%;
+    }
+
+    quiz-question .answers .card-panel {
+        min-height: 50px;
+        height: auto;
+    }
+
+    nav {
+        height: 40px;
+        line-height: 40px;
+    }
+
+    nav .brand-logo {
+        font-size: 1.5rem;
+    }
+
+    .card .card-action {
+        padding: 7px;
+    }
+
+    .btn-large {
+        height: 45px;
+        line-height: 45px;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
     }
 }
