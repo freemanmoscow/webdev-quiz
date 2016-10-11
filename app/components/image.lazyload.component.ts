@@ -8,7 +8,7 @@ import {Question} from '../interfaces/interfaces';
         class: 'hidden'
     },
     template: `
-      <img *ngFor="let question of questions;" [src]="question.image">
+      <img *ngFor="let question of questions;" [src]="question.image" [hidden]="true">
 `
 })
 

@@ -19,7 +19,7 @@ var LazyLoadComponent = (function () {
             host: {
                 class: 'hidden'
             },
-            template: "\n      <img *ngFor=\"let question of questions;\" [src]=\"question.image\">\n"
+            template: "\n      <img *ngFor=\"let question of questions;\" [src]=\"question.image\" [hidden]=\"true\">\n"
         }), 
         __metadata('design:paramtypes', [])
     ], LazyLoadComponent);
