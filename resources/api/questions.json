@@ -2,7 +2,7 @@
   "questions": [
     {
       "question": "What technology is this?",
-      "image": "resources/images/logo0001.svg",
+      "image": "resources/images/logo0001.png",
       "answered": "false",
       "answers": [
         "Node.js",
@@ -122,7 +122,7 @@
     },
     {
       "question": "What is this?",
-      "image": "resources/images/logo0010.svg",
+      "image": "resources/images/logo0010.png",
       "answered": "false",
       "answers": [
         "Materialize",
