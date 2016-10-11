@@ -1,3 +1,6 @@
+.hidden {
+    display: none;
+}
 .result {
     height: 10rem;
     justify-content: center;
