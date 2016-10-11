@@ -24,7 +24,7 @@ import {LazyLoadComponent} from '../components/image.lazyload.component';
           (restart)="onRestart($event)">
         </quiz-result>
     </div>
-    <!-- lazy-load [questions]="questions"></lazy-load -->
+    <lazy-load [questions]="questions"></lazy-load>
  `
 })
 

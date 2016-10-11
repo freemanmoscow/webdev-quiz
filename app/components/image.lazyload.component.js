@@ -17,9 +17,9 @@ var LazyLoadComponent = (function () {
             selector: '<lazy-load>',
             inputs: ['questions'],
             host: {
-                class: 'hidden'
+                class: 'hidden1'
             },
-            template: "\n      <img *ngFor=\"let question of questions;\" [src]=\"question.image\" [hidden]=\"true\">\n"
+            template: "\n      <img *ngFor=\"let question of questions;\" [src]=\"question.image\">\n"
         }), 
         __metadata('design:paramtypes', [])
     ], LazyLoadComponent);

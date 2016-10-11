@@ -5,10 +5,10 @@ import {Question} from '../interfaces/interfaces';
     selector: '<lazy-load>',
     inputs: ['questions'],
     host: {
-        class: 'hidden'
+        class: 'hidden1'
     },
     template: `
-      <img *ngFor="let question of questions;" [src]="question.image" [hidden]="true">
+      <img *ngFor="let question of questions;" [src]="question.image">
 `
 })
 
