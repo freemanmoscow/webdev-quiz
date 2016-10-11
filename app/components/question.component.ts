@@ -49,6 +49,7 @@ export class QuestionComponent {
 
     selectAnswer(answer): void {
         this._selectedAnswer = answer;
+        console.log(this.question);
     }
 
     isCorrect(answer): boolean {

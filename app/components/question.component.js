@@ -15,6 +15,7 @@ var QuestionComponent = (function () {
     }
     QuestionComponent.prototype.selectAnswer = function (answer) {
         this._selectedAnswer = answer;
+        console.log(this.question);
     };
     QuestionComponent.prototype.isCorrect = function (answer) {
         return answer === this.question.correctAnswer && this._selectedAnswer !== undefined;

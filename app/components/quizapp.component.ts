@@ -4,15 +4,16 @@ import {QuizService} from '../services/question.service';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {QuestionComponent} from '../components/question.component';
 import {ResultComponent} from '../components/result.component';
+import {LazyLoadComponent} from '../components/image.lazyload.component';
 
 @Component({
     selector: 'quiz',
-    directives: [QuestionComponent, ResultComponent],
+    directives: [QuestionComponent, ResultComponent, LazyLoadComponent],
     providers: [HTTP_PROVIDERS, QuizService],
     template: `
     <div id="quiz center-align" class="col s12 l10 offset-l1" *ngIf="_isLoaded">
         <quiz-question class="card horizontal white" *ngIf="!_showResult"
-          [question]="question[_currentQuestion]"
+          [question]="questions[_currentQuestion]"
           [totalQuestions]="result.total"
           [currentQuestion]="_currentQuestion"
           (next)="onNext($event)">
@@ -23,6 +24,7 @@ import {ResultComponent} from '../components/result.component';
           (restart)="onRestart($event)">
         </quiz-result>
     </div>
+    <lazy-load [questions]="questions"></lazy-load>
  `
 })
 
@@ -33,7 +35,7 @@ export class QuizApp {
     private _showResult: boolean;
     private sub: any;
     result: {total: number, correct: number};
-    question: Question[];
+    questions: Question[];
 
     constructor(private Quiz: QuizService) {
         this._isLoaded = false;
@@ -44,11 +46,11 @@ export class QuizApp {
 
     ngOnInit() {
         this.sub = this.Quiz.getQuestions().subscribe((response) => {
-            this.question = response;
+            this.questions = response;
             this._isLoaded = true;
-            this.question = this.arrayShuffle(this.question);
+            this.questions = this.arrayShuffle(this.questions);
             this.result = {
-                total: this.question.length < this._maxQuestions ? this.question.length : this._maxQuestions,
+                total: this.questions.length < this._maxQuestions ? this.questions.length : this._maxQuestions,
                 correct: 0
             }
         });
@@ -62,7 +64,7 @@ export class QuizApp {
         if (message.action === 'next') {
             if (message.correct)
                 this.result.correct++;
-            if (this.question[this._currentQuestion + 1] && this._currentQuestion < this._maxQuestions - 1)
+            if (this.questions[this._currentQuestion + 1] && this._currentQuestion < this._maxQuestions - 1)
                 this._currentQuestion++;
             else
                 this._showResult = true;

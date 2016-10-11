@@ -13,6 +13,7 @@ var question_service_1 = require('../services/question.service');
 var http_1 = require('@angular/http');
 var question_component_1 = require('../components/question.component');
 var result_component_1 = require('../components/result.component');
+var image_lazyload_component_1 = require('../components/image.lazyload.component');
 var QuizApp = (function () {
     function QuizApp(Quiz) {
         this.Quiz = Quiz;
@@ -24,11 +25,11 @@ var QuizApp = (function () {
     QuizApp.prototype.ngOnInit = function () {
         var _this = this;
         this.sub = this.Quiz.getQuestions().subscribe(function (response) {
-            _this.question = response;
+            _this.questions = response;
             _this._isLoaded = true;
-            _this.question = _this.arrayShuffle(_this.question);
+            _this.questions = _this.arrayShuffle(_this.questions);
             _this.result = {
-                total: _this.question.length < _this._maxQuestions ? _this.question.length : _this._maxQuestions,
+                total: _this.questions.length < _this._maxQuestions ? _this.questions.length : _this._maxQuestions,
                 correct: 0
             };
         });
@@ -40,7 +41,7 @@ var QuizApp = (function () {
         if (message.action === 'next') {
             if (message.correct)
                 this.result.correct++;
-            if (this.question[this._currentQuestion + 1] && this._currentQuestion < this._maxQuestions - 1)
+            if (this.questions[this._currentQuestion + 1] && this._currentQuestion < this._maxQuestions - 1)
                 this._currentQuestion++;
             else
                 this._showResult = true;
@@ -64,9 +65,9 @@ var QuizApp = (function () {
     QuizApp = __decorate([
         core_1.Component({
             selector: 'quiz',
-            directives: [question_component_1.QuestionComponent, result_component_1.ResultComponent],
+            directives: [question_component_1.QuestionComponent, result_component_1.ResultComponent, image_lazyload_component_1.LazyLoadComponent],
             providers: [http_1.HTTP_PROVIDERS, question_service_1.QuizService],
-            template: "\n    <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n        <quiz-question class=\"card horizontal white\" *ngIf=\"!_showResult\"\n          [question]=\"question[_currentQuestion]\"\n          [totalQuestions]=\"result.total\"\n          [currentQuestion]=\"_currentQuestion\"\n          (next)=\"onNext($event)\">\n        </quiz-question>\n        <quiz-result class=\"card horizontal white\"\n          *ngIf=\"_showResult\"\n          [result]=\"result\"\n          (restart)=\"onRestart($event)\">\n        </quiz-result>\n    </div>\n "
+            template: "\n    <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n        <quiz-question class=\"card horizontal white\" *ngIf=\"!_showResult\"\n          [question]=\"questions[_currentQuestion]\"\n          [totalQuestions]=\"result.total\"\n          [currentQuestion]=\"_currentQuestion\"\n          (next)=\"onNext($event)\">\n        </quiz-question>\n        <quiz-result class=\"card horizontal white\"\n          *ngIf=\"_showResult\"\n          [result]=\"result\"\n          (restart)=\"onRestart($event)\">\n        </quiz-result>\n    </div>\n    <lazy-load [questions]=\"questions\"></lazy-load>\n "
         }), 
         __metadata('design:paramtypes', [question_service_1.QuizService])
     ], QuizApp);

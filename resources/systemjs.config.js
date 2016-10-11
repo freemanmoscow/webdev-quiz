@@ -2,7 +2,7 @@
   // map tells the System loader where to look for things
   var map = {
     'app': './app',
-    'question.service': 'app/question.service.js',
+    'question.service': 'app/questions.service.js',
     'rxjs': 'node_modules/rxjs',
     '@angular': 'node_modules/@angular'
   };
