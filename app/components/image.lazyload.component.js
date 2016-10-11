@@ -12,14 +12,25 @@ var core_1 = require('@angular/core');
 var LazyLoadComponent = (function () {
     function LazyLoadComponent() {
     }
+    LazyLoadComponent.prototype.ngOnChanges = function () {
+        this._images = [];
+        if (this.questions) {
+            for (var _i = 0, _a = this.questions; _i < _a.length; _i++) {
+                var question = _a[_i];
+                var image = new Image();
+                image.src = question.image;
+                this._images.push(image);
+            }
+        }
+    };
     LazyLoadComponent = __decorate([
         core_1.Component({
             selector: '<lazy-load>',
             inputs: ['questions'],
             host: {
-                class: 'hidden1'
+                class: 'hidden'
             },
-            template: "\n      <img *ngFor=\"let question of questions;\" [src]=\"question.image\">\n"
+            template: "\n      <img *ngFor=\"let question of questions;\" [src]=\"question.image\" [hidden]=\"true\">\n"
         }), 
         __metadata('design:paramtypes', [])
     ], LazyLoadComponent);
