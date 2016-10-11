@@ -4,11 +4,10 @@ import {QuizService} from '../services/question.service';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {QuestionComponent} from '../components/question.component';
 import {ResultComponent} from '../components/result.component';
-import {LazyLoadComponent} from '../components/image.lazyload.component';
 
 @Component({
     selector: 'quiz',
-    directives: [QuestionComponent, ResultComponent, LazyLoadComponent],
+    directives: [QuestionComponent, ResultComponent],
     providers: [HTTP_PROVIDERS, QuizService],
     template: `
     <div id="quiz center-align" class="col s12 l10 offset-l1" *ngIf="_isLoaded">
@@ -24,7 +23,6 @@ import {LazyLoadComponent} from '../components/image.lazyload.component';
           (restart)="onRestart($event)">
         </quiz-result>
     </div>
-    <lazy-load [questions]="questions"></lazy-load>
  `
 })
 
@@ -33,6 +31,7 @@ export class QuizApp {
     private _currentQuestion: number;
     private _maxQuestions: number;
     private _showResult: boolean;
+    _images: HTMLImageElement[];
     private sub: any;
     result: {total: number, correct: number};
     questions: Question[];
@@ -53,6 +52,7 @@ export class QuizApp {
                 total: this.questions.length < this._maxQuestions ? this.questions.length : this._maxQuestions,
                 correct: 0
             }
+            this.imageLazyLoad();
         });
     }
 
@@ -86,5 +86,16 @@ export class QuizApp {
     arrayShuffle<T>(src: T[]): T[] {
         for (var j, x, i = src.length; i; j = parseInt(String(Math.random() * i)), x = src[--i], src[i] = src[j], src[j] = x);
         return src;
+    }
+
+    imageLazyLoad(): void {
+        this._images = [];
+        if (this.questions) {
+            for (let question of this.questions) {
+                let image: HTMLImageElement = new Image();
+                image.src = question.image;
+                this._images.push(image);
+            }
+        }
     }
 }
