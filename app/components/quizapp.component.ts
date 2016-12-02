@@ -27,14 +27,14 @@ import {ResultComponent} from '../components/result.component';
 })
 
 export class QuizApp {
+    result: {total: number, correct: number};
+    questions: Question[];
     private _isLoaded: boolean;
     private _currentQuestion: number;
     private _maxQuestions: number;
     private _showResult: boolean;
-    _images: HTMLImageElement[];
-    private sub: any;
-    result: {total: number, correct: number};
-    questions: Question[];
+    private _images: HTMLImageElement[];
+    private _getQuestionsObservable: any;
 
     constructor(private Quiz: QuizService) {
         this._isLoaded = false;
@@ -44,7 +44,7 @@ export class QuizApp {
     }
 
     ngOnInit() {
-        this.sub = this.Quiz.getQuestions().subscribe((response) => {
+        this._getQuestionsObservable = this.Quiz.getQuestions().subscribe((response) => {
             this.questions = response;
             this._isLoaded = true;
             this.questions = this.arrayShuffle(this.questions);
@@ -57,7 +57,7 @@ export class QuizApp {
     }
 
     ngOnDestroy() {
-        this.sub.unsubscribe();
+        this._getQuestionsObservable.unsubscribe();
     }
 
     onNext(message: NextQuestion): void {
