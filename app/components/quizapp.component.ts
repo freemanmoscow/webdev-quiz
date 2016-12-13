@@ -4,24 +4,28 @@ import {QuizService} from '../services/question.service';
 import {HTTP_PROVIDERS} from '@angular/http';
 import {QuestionComponent} from '../components/question.component';
 import {ResultComponent} from '../components/result.component';
+import {HeaderComponent} from '../components/header.component';
 
 @Component({
     selector: 'quiz',
-    directives: [QuestionComponent, ResultComponent],
+    directives: [QuestionComponent, ResultComponent, HeaderComponent],
     providers: [HTTP_PROVIDERS, QuizService],
     template: `
-    <div id="quiz center-align" class="col s12 l10 offset-l1" *ngIf="_isLoaded">
-        <quiz-question class="card horizontal white" *ngIf="!_showResult"
-          [question]="questions[_currentQuestion]"
-          [totalQuestions]="result.total"
-          [currentQuestion]="_currentQuestion"
-          (next)="onNext($event)">
-        </quiz-question>
-        <quiz-result class="card horizontal white"
-          *ngIf="_showResult"
-          [result]="result"
-          (restart)="onRestart($event)">
-        </quiz-result>
+    <div class="row">
+        <quiz-header></quiz-header>
+        <div id="quiz center-align" class="col s12 l10 offset-l1" *ngIf="_isLoaded">
+            <quiz-question class="card horizontal white" *ngIf="!_showResult"
+              [question]="questions[_currentQuestion]"
+              [totalQuestions]="result.total"
+              [currentQuestion]="_currentQuestion"
+              (next)="onNext($event)">
+            </quiz-question>
+            <quiz-result class="card horizontal white"
+              *ngIf="_showResult"
+              [result]="result"
+              (restart)="onRestart($event)">
+            </quiz-result>
+        </div>
     </div>
  `
 })

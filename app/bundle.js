@@ -81,7 +81,7 @@ var QuizApp = (function () {
     }
     QuizApp.prototype.ngOnInit = function () {
         var _this = this;
-        this.sub = this.Quiz.getQuestions().subscribe(function (response) {
+        this._getQuestionsObservable = this.Quiz.getQuestions().subscribe(function (response) {
             _this.questions = response;
             _this._isLoaded = true;
             _this.questions = _this.arrayShuffle(_this.questions);
@@ -93,7 +93,7 @@ var QuizApp = (function () {
         });
     };
     QuizApp.prototype.ngOnDestroy = function () {
-        this.sub.unsubscribe();
+        this._getQuestionsObservable.unsubscribe();
     };
     QuizApp.prototype.onNext = function (message) {
         if (message.action === 'next') {
