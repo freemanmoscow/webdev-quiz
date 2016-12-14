@@ -10,21 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var question_service_1 = require('../services/question.service');
-var http_1 = require('@angular/http');
-var question_component_1 = require('../components/question.component');
-var result_component_1 = require('../components/result.component');
-core_1.NgModule({
-    imports: [http_1.HttpModule, question_service_1.QuizService, question_component_1.QuestionComponent, result_component_1.ResultComponent],
-    declarations: [question_component_1.QuestionComponent, result_component_1.ResultComponent, QuizApp],
-    providers: [http_1.HttpModule, question_service_1.QuizService],
-    bootstrap: [QuizApp]
-});
-var MyApp = (function () {
-    function MyApp() {
-    }
-    return MyApp;
-}());
-exports.MyApp = MyApp;
 var QuizApp = (function () {
     function QuizApp(Quiz) {
         this.Quiz = Quiz;
@@ -76,8 +61,6 @@ var QuizApp = (function () {
     QuizApp = __decorate([
         core_1.Component({
             selector: 'quiz',
-            //directives: [QuestionComponent, ResultComponent],
-            //providers: [HttpModule, QuizService],
             template: "\n    <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n        <quiz-question class=\"card horizontal white\" *ngIf=\"!_showResult\"\n          [question]=\"question[_currentQuestion]\"\n          [totalQuestions]=\"result.total\"\n          [currentQuestion]=\"_currentQuestion\"\n          (next)=\"onNext($event)\">\n        </quiz-question>\n        <quiz-result class=\"card horizontal white\"\n          *ngIf=\"_showResult\"\n          [result]=\"result\"\n          (restart)=\"onRestart($event)\">\n        </quiz-result>\n    </div>\n "
         }), 
         __metadata('design:paramtypes', [question_service_1.QuizService])
@@ -85,4 +68,5 @@ var QuizApp = (function () {
     return QuizApp;
 }());
 exports.QuizApp = QuizApp;
+;
 //# sourceMappingURL=quizapp.component.js.map

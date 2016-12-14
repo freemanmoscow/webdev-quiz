@@ -65,7 +65,7 @@ export class QuestionComponent {
 
     nextQuestion(): void {
         this.next.emit({action: 'next', correct: this._selectedAnswer === this.question.correctAnswer});
-        this._selectedAnswer = void(0);
+        this._selectedAnswer = undefined;
         //Materialize.showStaggeredList('.card-stacked');
     }
 }

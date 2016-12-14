@@ -1,23 +1,9 @@
 import {Component, NgModule, OnInit, OnDestroy} from '@angular/core';
 import {Question, NextQuestion} from '../interfaces/interfaces';
 import {QuizService} from '../services/question.service';
-import {HttpModule} from '@angular/http';
-import {QuestionComponent} from '../components/question.component';
-import {ResultComponent} from '../components/result.component';
-
-NgModule({
-    imports: [ HttpModule, QuizService, QuestionComponent, ResultComponent ],
-    declarations: [ QuestionComponent, ResultComponent, QuizApp ],  //<----here
-    providers: [ HttpModule, QuizService ],
-    bootstrap:    [ QuizApp ]
-})
-
-export class MyApp {}
 
 @Component({
     selector: 'quiz',
-    //directives: [QuestionComponent, ResultComponent],
-    //providers: [HttpModule, QuizService],
     template: `
     <div id="quiz center-align" class="col s12 l10 offset-l1" *ngIf="_isLoaded">
         <quiz-question class="card horizontal white" *ngIf="!_showResult"
@@ -94,4 +80,4 @@ export class QuizApp {
         for (var j, x, i = src.length; i; j = parseInt(String(Math.random() * i)), x = src[--i], src[i] = src[j], src[j] = x);
         return src;
     }
-}
+};
