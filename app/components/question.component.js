@@ -28,7 +28,8 @@ var QuestionComponent = (function () {
     };
     QuestionComponent.prototype.nextQuestion = function () {
         this.next.emit({ action: 'next', correct: this._selectedAnswer === this.question.correctAnswer });
-        this._selectedAnswer = void (0);
+        this._selectedAnswer = undefined;
+        //Materialize.showStaggeredList('.card-stacked');
     };
     QuestionComponent = __decorate([
         core_1.Component({

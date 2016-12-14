@@ -1,15 +1,9 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Question, NextQuestion} from '../interfaces/interfaces';
 import {QuizService} from '../services/question.service';
-import {HTTP_PROVIDERS} from '@angular/http';
-import {QuestionComponent} from '../components/question.component';
-import {ResultComponent} from '../components/result.component';
-import {HeaderComponent} from '../components/header.component';
 
 @Component({
     selector: 'quiz',
-    directives: [QuestionComponent, ResultComponent, HeaderComponent],
-    providers: [HTTP_PROVIDERS, QuizService],
     template: `
     <div class="row">
         <quiz-header></quiz-header>
@@ -102,4 +96,4 @@ export class QuizApp {
             }
         }
     }
-}
+};
