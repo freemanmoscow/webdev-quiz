@@ -10,10 +10,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var quizapp_component_1 = require("../components/quizapp.component");
 var question_service_1 = require("../services/question.service");
-var http_1 = require("@angular/http");
 var result_component_1 = require("../components/result.component");
 var question_component_1 = require("../components/question.component");
+var timer_service_1 = require("../services/timer.service");
+var header_component_1 = require("../components/header.component");
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
 var platform_browser_1 = require("@angular/platform-browser");
 var AppModule = (function () {
     function AppModule() {
@@ -21,8 +23,8 @@ var AppModule = (function () {
     AppModule = __decorate([
         core_1.NgModule({
             imports: [http_1.HttpModule, platform_browser_1.BrowserModule],
-            declarations: [question_component_1.QuestionComponent, result_component_1.ResultComponent, quizapp_component_1.QuizApp],
-            providers: [http_1.HttpModule, question_service_1.QuizService],
+            declarations: [question_component_1.QuestionComponent, result_component_1.ResultComponent, quizapp_component_1.QuizApp, header_component_1.HeaderComponent],
+            providers: [http_1.HttpModule, question_service_1.QuizService, timer_service_1.TimerService],
             bootstrap: [quizapp_component_1.QuizApp]
         }), 
         __metadata('design:paramtypes', [])

@@ -5,11 +5,9 @@ import {Question, NextQuestion} from '../interfaces/interfaces';
     selector: 'quiz-question',
     inputs: ['question', 'totalQuestions', 'currentQuestion'],
     outputs: ['next'],
-    host: {
-        class: 'row'
-    },
     template: `
-      <div class="card-stacked">
+    <ul class="row horizontal">
+      <li class="card card-stacked white">
         <div class="card-content">
             <div class="row card-panel question grey lighten-3 valign-wrapper">
               <div class="col s3 m2" *ngIf="question.image"><div class="image valign-wrapper"><img class="valign" [src]="question.image"></div></div>
@@ -34,7 +32,8 @@ import {Question, NextQuestion} from '../interfaces/interfaces';
         <div class="progress">
           <div class="determinate orange" [style.width]="(currentQuestion / totalQuestions * 100) + '%'"></div>
         </div>
-      </div>
+      </li>
+    </ul>
 `
 })
 
@@ -49,7 +48,7 @@ export class QuestionComponent {
 
     selectAnswer(answer): void {
         this._selectedAnswer = answer;
-        console.log(this.question);
+        //console.log(this.question);
     }
 
     isCorrect(answer): boolean {
@@ -67,6 +66,6 @@ export class QuestionComponent {
     nextQuestion(): void {
         this.next.emit({action: 'next', correct: this._selectedAnswer === this.question.correctAnswer});
         this._selectedAnswer = undefined;
-        //Materialize.showStaggeredList('.card-stacked');
+        Materialize.showStaggeredList('quiz-question');
     }
 }

@@ -98,9 +98,16 @@ nav .brand-logo {
     max-height: 100%;
     max-width: 100%;
 }
+.card {
+    background: transparent;
+}
 
 .card .card-content {
     padding: 20px 40px;
+}
+
+.card.card-stacked {
+    margin: 0;
 }
 
 .nav-wrapper a {
@@ -126,15 +133,15 @@ nav .brand-logo {
 }
 
 @media only screen and (min-width: 993px) {
-    quiz-question.row .col.l6.card-panel:nth-child(even) {
+    quiz-question .row .col.l6.card-panel:nth-child(even) {
         margin-left: 1.5%;
     }
 
-    quiz-question.row .col.l6.card-panel:nth-child(odd) {
+    quiz-question .row .col.l6.card-panel:nth-child(odd) {
         margin-right: 1.5%;
     }
 
-    quiz-question.row .col.l6.card-panel {
+    quiz-question .row .col.l6.card-panel {
         width: 48.5%;
     }
 

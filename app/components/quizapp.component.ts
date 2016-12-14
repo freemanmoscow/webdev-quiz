@@ -8,7 +8,7 @@ import {QuizService} from '../services/question.service';
     <div class="row">
         <quiz-header></quiz-header>
         <div id="quiz center-align" class="col s12 l10 offset-l1" *ngIf="_isLoaded">
-            <quiz-question class="card horizontal white" *ngIf="!_showResult"
+            <quiz-question *ngIf="!_showResult"
               [question]="questions[_currentQuestion]"
               [totalQuestions]="result.total"
               [currentQuestion]="_currentQuestion"

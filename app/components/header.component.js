@@ -23,7 +23,6 @@ var HeaderComponent = (function () {
                 class: 'row'
             },
             inputs: ['timer'],
-            providers: [timer_service_1.TimerService],
             template: "\n    <nav class=\"col s12 l10 offset-l1 white\">\n      <div class=\"nav-wrapper\">\n        <a class=\"brand-logo\">WebDev Quiz</a>\n        <ul class=\"right hide-on-med-and-down\">\n          <li class=\"reload\">\n            <a onclick=\"location.reload();\">\n              <i class=\"material-icons blue-grey-text right\">refresh</i>\n              {{ timer }} left\n            </a>\n          </li>\n          <li class=\"github-button\">\n            <a class=\"waves-effect waves-light btn\" href=\"https://github.com/freemanmoscow/webdev-quiz\" target=\"_blank\">\n              <i class=\"material-icons left\">code</i>\n              GitHub\n            </a>\n          </li>\n        </ul>\n      </div>\n    </nav>\n"
         }), 
         __metadata('design:paramtypes', [timer_service_1.TimerService])

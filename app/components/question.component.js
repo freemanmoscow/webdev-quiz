@@ -15,7 +15,7 @@ var QuestionComponent = (function () {
     }
     QuestionComponent.prototype.selectAnswer = function (answer) {
         this._selectedAnswer = answer;
-        console.log(this.question);
+        //console.log(this.question);
     };
     QuestionComponent.prototype.isCorrect = function (answer) {
         return answer === this.question.correctAnswer && this._selectedAnswer !== undefined;
@@ -29,17 +29,14 @@ var QuestionComponent = (function () {
     QuestionComponent.prototype.nextQuestion = function () {
         this.next.emit({ action: 'next', correct: this._selectedAnswer === this.question.correctAnswer });
         this._selectedAnswer = undefined;
-        //Materialize.showStaggeredList('.card-stacked');
+        Materialize.showStaggeredList('quiz-question');
     };
     QuestionComponent = __decorate([
         core_1.Component({
             selector: 'quiz-question',
             inputs: ['question', 'totalQuestions', 'currentQuestion'],
             outputs: ['next'],
-            host: {
-                class: 'row'
-            },
-            template: "\n      <div class=\"card-stacked\">\n        <div class=\"card-content\">\n            <div class=\"row card-panel question grey lighten-3 valign-wrapper\">\n              <div class=\"col s3 m2\" *ngIf=\"question.image\"><div class=\"image valign-wrapper\"><img class=\"valign\" [src]=\"question.image\"></div></div>\n              <div class=\"col valign-wrapper text s9\"\n                [class.m12]=\"!question.image\"\n                [class.m10]=\"question.image\"><h5 class=\"valign\">{{ question.question }}</h5></div>\n            </div>\n            <div class=\"row answers\">\n              <div class=\"lighten-4 col s12 l6 valign-wrapper card-panel waves-effect waves-light\" *ngFor=\"let answer of question.answers; let i = index;\"\n                [class.red]=\"isIncorrect(i.toString())\"\n                [class.green]=\"isCorrect(i.toString())\"\n                [class.yellow]=\"isDisabled()\"\n                [class.disabled]=\"!isDisabled()\"\n                (click)=\"selectAnswer(i.toString())\">\n                  <div class=\"valign answer\">{{ answer }}</div>\n              </div>\n            </div>\n          </div>\n        <div class=\"card-action center\">\n          <a class=\"waves-effect waves-light btn-large\" (click)=\"nextQuestion()\" [class.disabled]=\"isDisabled()\">Next</a>\n        </div>\n        <div class=\"progress\">\n          <div class=\"determinate orange\" [style.width]=\"(currentQuestion / totalQuestions * 100) + '%'\"></div>\n        </div>\n      </div>\n"
+            template: "\n    <ul class=\"row horizontal\">\n      <li class=\"card card-stacked white\">\n        <div class=\"card-content\">\n            <div class=\"row card-panel question grey lighten-3 valign-wrapper\">\n              <div class=\"col s3 m2\" *ngIf=\"question.image\"><div class=\"image valign-wrapper\"><img class=\"valign\" [src]=\"question.image\"></div></div>\n              <div class=\"col valign-wrapper text s9\"\n                [class.m12]=\"!question.image\"\n                [class.m10]=\"question.image\"><h5 class=\"valign\">{{ question.question }}</h5></div>\n            </div>\n            <div class=\"row answers\">\n              <div class=\"lighten-4 col s12 l6 valign-wrapper card-panel waves-effect waves-light\" *ngFor=\"let answer of question.answers; let i = index;\"\n                [class.red]=\"isIncorrect(i.toString())\"\n                [class.green]=\"isCorrect(i.toString())\"\n                [class.yellow]=\"isDisabled()\"\n                [class.disabled]=\"!isDisabled()\"\n                (click)=\"selectAnswer(i.toString())\">\n                  <div class=\"valign answer\">{{ answer }}</div>\n              </div>\n            </div>\n          </div>\n        <div class=\"card-action center\">\n          <a class=\"waves-effect waves-light btn-large\" (click)=\"nextQuestion()\" [class.disabled]=\"isDisabled()\">Next</a>\n        </div>\n        <div class=\"progress\">\n          <div class=\"determinate orange\" [style.width]=\"(currentQuestion / totalQuestions * 100) + '%'\"></div>\n        </div>\n      </li>\n    </ul>\n"
         }), 
         __metadata('design:paramtypes', [])
     ], QuestionComponent);

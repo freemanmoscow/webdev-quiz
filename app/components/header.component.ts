@@ -8,7 +8,6 @@ import {Constants} from "../config/app.constants";
         class: 'row'
     },
     inputs: ['timer'],
-    providers: [TimerService],
     template: `
     <nav class="col s12 l10 offset-l1 white">
       <div class="nav-wrapper">
