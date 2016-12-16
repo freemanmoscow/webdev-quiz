@@ -13,15 +13,24 @@ var Constants = (function () {
     function Constants() {
     }
     Object.defineProperty(Constants, "QUIZTIME", {
-        get: function () { return 120; },
+        get: function () {
+            return 10; // time to complete the quiz in seconds
+        },
         enumerable: true,
         configurable: true
     });
-    Constants = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], Constants);
+    Object.defineProperty(Constants, "NUMBEROFQUESTIONS", {
+        get: function () {
+            return 10; // number of questions in the quiz
+        },
+        enumerable: true,
+        configurable: true
+    });
     return Constants;
 }());
+Constants = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], Constants);
 exports.Constants = Constants;
 //# sourceMappingURL=app.constants.js.map

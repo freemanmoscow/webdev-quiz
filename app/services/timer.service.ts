@@ -16,5 +16,6 @@ export class TimerService {
 
     setTimer(initialTime: number = 0): any {
         this.timerObservable = Observable.timer(initialTime, 1000);
+        return this.timerObservable;
     }
 }

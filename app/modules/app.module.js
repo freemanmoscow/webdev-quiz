@@ -20,16 +20,16 @@ var platform_browser_1 = require("@angular/platform-browser");
 var AppModule = (function () {
     function AppModule() {
     }
-    AppModule = __decorate([
-        core_1.NgModule({
-            imports: [http_1.HttpModule, platform_browser_1.BrowserModule],
-            declarations: [question_component_1.QuestionComponent, result_component_1.ResultComponent, quizapp_component_1.QuizApp, header_component_1.HeaderComponent],
-            providers: [http_1.HttpModule, question_service_1.QuizService, timer_service_1.TimerService],
-            bootstrap: [quizapp_component_1.QuizApp]
-        }), 
-        __metadata('design:paramtypes', [])
-    ], AppModule);
     return AppModule;
 }());
+AppModule = __decorate([
+    core_1.NgModule({
+        imports: [http_1.HttpModule, platform_browser_1.BrowserModule],
+        declarations: [question_component_1.QuestionComponent, result_component_1.ResultComponent, quizapp_component_1.QuizApp, header_component_1.HeaderComponent],
+        providers: [http_1.HttpModule, question_service_1.QuizService, timer_service_1.TimerService],
+        bootstrap: [quizapp_component_1.QuizApp]
+    }),
+    __metadata("design:paramtypes", [])
+], AppModule);
 exports.AppModule = AppModule;
 //# sourceMappingURL=app.module.js.map

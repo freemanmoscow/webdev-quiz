@@ -1,22 +1,26 @@
-import {Component} from '@angular/core';
-import {TimerService} from '../services/timer.service';
-import {Constants} from "../config/app.constants";
+import {Component, EventEmitter} from '@angular/core';
+import * as moment from 'moment';
 
 @Component({
     selector: 'quiz-header',
     host: {
         class: 'row'
     },
-    inputs: ['timer'],
+    outputs: ['restart'],
+    inputs: ['tick'],
     template: `
     <nav class="col s12 l10 offset-l1 white">
       <div class="nav-wrapper">
         <a class="brand-logo">WebDev Quiz</a>
         <ul class="right hide-on-med-and-down">
+          <li class="timer"
+            [class.timeout]="tick <= 5 && tick > 0"
+            [class.done]="tick <= 0">
+            {{ moment.utc(tick * 1000).format('mm:ss') }} left
+          </li>
           <li class="reload">
-            <a onclick="location.reload();">
+            <a (click)="resetQuestions()">
               <i class="material-icons blue-grey-text right">refresh</i>
-              {{ timer }} left
             </a>
           </li>
           <li class="github-button">
@@ -32,10 +36,15 @@ import {Constants} from "../config/app.constants";
 })
 
 export class HeaderComponent {
-    timer: string;
-    _timerObservable: any;
+    restart: EventEmitter<string>;
+    moment: any;
 
-    constructor(TimerService: TimerService) {
-        this._timerObservable = TimerService.getTimer().map(i => Constants.QUIZTIME - i).take(Constants.QUIZTIME + 1).subscribe(response => this.timer = String(response));
+    constructor() {
+        this.restart = new EventEmitter<string>();
+        this.moment = moment;
+    }
+
+    resetQuestions(): void {
+        this.restart.emit("restart");
     }
 }

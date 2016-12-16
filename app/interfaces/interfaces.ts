@@ -6,7 +6,13 @@ export interface Question {
     correctAnswer: string
 }
 
-export interface NextQuestion {
+export interface QuestionAction {
     action: string,
     correct: boolean
+}
+
+export interface Result {
+    total: number,
+    correct: number,
+    seconds: number
 }

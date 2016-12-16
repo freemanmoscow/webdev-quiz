@@ -4,7 +4,7 @@ import {Question, NextQuestion} from '../interfaces/interfaces';
 @Component({
     selector: 'quiz-question',
     inputs: ['question', 'totalQuestions', 'currentQuestion'],
-    outputs: ['next'],
+    outputs: ['questionAction'],
     template: `
     <ul class="row horizontal">
       <li class="card card-stacked white">
@@ -39,15 +39,16 @@ import {Question, NextQuestion} from '../interfaces/interfaces';
 
 export class QuestionComponent {
     question: Question;
-    next: EventEmitter<NextQuestion>;
+    questionAction: EventEmitter<NextQuestion>;
     private _selectedAnswer: string;
 
     constructor() {
-        this.next = new EventEmitter<NextQuestion>();
+        this.questionAction = new EventEmitter<NextQuestion>();
     }
 
     selectAnswer(answer): void {
         this._selectedAnswer = answer;
+        this.questionAction.emit({action: 'answer', correct: this._selectedAnswer === this.question.correctAnswer});
         //console.log(this.question);
     }
 
@@ -64,8 +65,8 @@ export class QuestionComponent {
     }
 
     nextQuestion(): void {
-        this.next.emit({action: 'next', correct: this._selectedAnswer === this.question.correctAnswer});
+        this.questionAction.emit({action: 'next', correct: this._selectedAnswer === this.question.correctAnswer});
         this._selectedAnswer = undefined;
-        Materialize.showStaggeredList('quiz-question');
+        //Materialize.showStaggeredList('quiz-question');
     }
 }

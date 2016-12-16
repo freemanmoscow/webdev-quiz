@@ -1,4 +1,6 @@
 import {Component, EventEmitter} from '@angular/core';
+import * as moment from 'moment';
+import {Result} from "../interfaces/interfaces";
 
 @Component({
     selector: 'quiz-result',
@@ -10,8 +12,13 @@ import {Component, EventEmitter} from '@angular/core';
     template: `
  <div class="card-stacked">
      <div class="card-content">
-        <div class="result card-panel s12 l8 offset-l2 valign-wrapper" [class.bad]="resultGrade() <= 1" [class.ok]="resultGrade() === 2" [class.good]="resultGrade() >= 3">
+        <div 
+          class="result card-panel s12 l8 offset-l2 valign-wrapper"
+          [class.bad]="resultGrade() <= 1"
+          [class.ok]="resultGrade() === 2"
+          [class.good]="resultGrade() >= 3">
             <div class="valign text">Result: {{ result.correct }} out of {{ result.total }} correct</div>
+            <div class="valign seconds">Solved in {{ moment.utc(result.seconds * 1000).format('mm:ss') }}</div>
         </div>
     </div>
     <div class="card-action center">
@@ -25,11 +32,13 @@ import {Component, EventEmitter} from '@angular/core';
 })
 
 export class ResultComponent {
-    result: {total: number, correct: number};
+    result: Result;
     restart: EventEmitter<string>;
+    moment: any;
 
     constructor() {
         this.restart = new EventEmitter<string>();
+        this.moment = moment;
     }
 
     resetQuestions(): void {

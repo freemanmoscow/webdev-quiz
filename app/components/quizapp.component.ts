@@ -1,18 +1,25 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {Question, NextQuestion} from '../interfaces/interfaces';
+import {Question, Result, QuestionAction} from '../interfaces/interfaces';
 import {QuizService} from '../services/question.service';
+import {TimerService} from '../services/timer.service';
+import {Constants} from "../config/app.constants";
 
 @Component({
     selector: 'quiz',
     template: `
     <div class="row">
-        <quiz-header></quiz-header>
+        <quiz-header
+          [tick]="timer"
+          (restart)="onRestart($event)">                    
+        </quiz-header>
         <div id="quiz center-align" class="col s12 l10 offset-l1" *ngIf="_isLoaded">
-            <quiz-question *ngIf="!_showResult"
+            <quiz-question
+              *ngIf="!_showResult"
               [question]="questions[_currentQuestion]"
               [totalQuestions]="result.total"
               [currentQuestion]="_currentQuestion"
-              (next)="onNext($event)">
+              (questionAction)="onQuestionAction($event)"
+              (answer)="onAnswer($event)">
             </quiz-question>
             <quiz-result class="card horizontal white"
               *ngIf="_showResult"
@@ -25,20 +32,23 @@ import {QuizService} from '../services/question.service';
 })
 
 export class QuizApp {
-    result: {total: number, correct: number};
+    result: Result;
     questions: Question[];
+    timer: number;
     private _isLoaded: boolean;
     private _currentQuestion: number;
     private _maxQuestions: number;
     private _showResult: boolean;
     private _images: HTMLImageElement[];
     private _getQuestionsObservable: any;
+    private _timerObservable: any;
 
-    constructor(private Quiz: QuizService) {
+    constructor(private Quiz: QuizService, private TimerService: TimerService) {
         this._isLoaded = false;
         this._showResult = false;
-        this._maxQuestions = 10;
+        this._maxQuestions = Constants.NUMBEROFQUESTIONS;
         this._currentQuestion = 0;
+        this.startTimer();
     }
 
     ngOnInit() {
@@ -48,20 +58,24 @@ export class QuizApp {
             this.questions = this.arrayShuffle(this.questions);
             this.result = {
                 total: this.questions.length < this._maxQuestions ? this.questions.length : this._maxQuestions,
-                correct: 0
-            }
+                correct: 0,
+                seconds: Constants.QUIZTIME - this.timer;
+        }
             this.imageLazyLoad();
         });
     }
 
     ngOnDestroy() {
         this._getQuestionsObservable.unsubscribe();
+        this._timerObservable.unsubscribe();
     }
 
-    onNext(message: NextQuestion): void {
-        if (message.action === 'next') {
+    onQuestionAction(message: QuestionAction): void {
+        if (message.action === 'answer') {
             if (message.correct)
                 this.result.correct++;
+        }
+        if (message.action === 'next') {
             if (this.questions[this._currentQuestion + 1] && this._currentQuestion < this._maxQuestions - 1)
                 this._currentQuestion++;
             else
@@ -77,6 +91,8 @@ export class QuizApp {
             this._maxQuestions = 10;
             this._currentQuestion = 0;
             this.ngOnInit();
+            this._timerObservable.unsubscribe();
+            this.startTimer();
         }
 
     }
@@ -96,4 +112,18 @@ export class QuizApp {
             }
         }
     }
-};
+
+    startTimer() {
+        this.timer = 0;
+        this._timerObservable = this.TimerService.getTimer()
+            .map(i => Constants.QUIZTIME - i)
+            .take(Constants.QUIZTIME + 1)
+            .subscribe((response) => {
+                this.timer = response;
+                this._showResult = this._showResult || this.timer <= 0;
+                if (this._showResult)
+                    this._timerObservable.unsubscribe();
+            });
+    }
+}
+;

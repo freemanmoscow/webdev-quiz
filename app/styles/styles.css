@@ -1,6 +1,7 @@
 .hidden {
     display: none;
 }
+
 .result {
     height: 10rem;
     justify-content: center;
@@ -29,6 +30,10 @@
 
 .result.ok .text:after {
     content: "   👌";
+}
+
+.result .seconds {
+    display: block;
 }
 
 .is-correct {
@@ -98,6 +103,11 @@ nav .brand-logo {
     max-height: 100%;
     max-width: 100%;
 }
+
+.timer {
+    color: #000000;
+}
+
 .card {
     background: transparent;
 }
@@ -130,6 +140,23 @@ nav .brand-logo {
 
 .menuitem .reload {
     font-size: 1.6rem;
+}
+
+.timer.timeout {
+    animation: animation-timeout 1s ease 6;
+}
+
+.timer.done {
+    color: #FF0000;
+}
+
+@keyframes animation-timeout {
+    from {
+        color: #FF0000;
+    }
+    to {
+        color: #000000;
+    }
 }
 
 @media only screen and (min-width: 993px) {
