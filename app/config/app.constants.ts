@@ -4,7 +4,7 @@ import {Injectable} from "@angular/core";
 
 export class Constants {
     static get QUIZTIME(): number {
-        return 10; // time to complete the quiz in seconds
+        return 120; // time to complete the quiz in seconds
     }
 
     static get NUMBEROFQUESTIONS(): number {

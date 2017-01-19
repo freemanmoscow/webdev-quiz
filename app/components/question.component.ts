@@ -1,5 +1,5 @@
 import {Component, EventEmitter} from '@angular/core';
-import {Question, NextQuestion} from '../interfaces/interfaces';
+import {Question, QuestionAction} from '../interfaces/interfaces';
 
 @Component({
     selector: 'quiz-question',
@@ -39,11 +39,11 @@ import {Question, NextQuestion} from '../interfaces/interfaces';
 
 export class QuestionComponent {
     question: Question;
-    questionAction: EventEmitter<NextQuestion>;
+    questionAction: EventEmitter<QuestionAction>;
     private _selectedAnswer: string;
 
     constructor() {
-        this.questionAction = new EventEmitter<NextQuestion>();
+        this.questionAction = new EventEmitter<QuestionAction>();
     }
 
     selectAnswer(answer): void {

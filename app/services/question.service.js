@@ -18,7 +18,7 @@ var QuizService = (function () {
     QuizService.prototype.getQuestions = function () {
         return this.http
             .get('resources/api/questions.json')
-            .map(function (response) { return response.json().questions.map(_toQuestions); });
+            .map(function (response) { return response.json().questions; });
     };
     return QuizService;
 }());
@@ -27,13 +27,4 @@ QuizService = __decorate([
     __metadata("design:paramtypes", [http_1.Http])
 ], QuizService);
 exports.QuizService = QuizService;
-function _toQuestions(question) {
-    return ({
-        image: question.image,
-        question: question.question,
-        answered: question.answered,
-        answers: question.answers,
-        correctAnswer: question.correctAnswer
-    });
-}
 //# sourceMappingURL=question.service.js.map

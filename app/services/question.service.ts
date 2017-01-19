@@ -14,16 +14,6 @@ export class QuizService {
     getQuestions(): Observable<any> {
         return this.http
             .get('resources/api/questions.json')
-            .map(response => response.json().questions.map(_toQuestions));
+            .map(response => response.json().questions);
     }
-}
-
-function _toQuestions(question: any): Question {
-    return <Question>({
-        image: question.image,
-        question: question.question,
-        answered: question.answered,
-        answers: question.answers,
-        correctAnswer: question.correctAnswer
-    });
 }

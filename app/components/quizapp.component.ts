@@ -59,8 +59,8 @@ export class QuizApp {
             this.result = {
                 total: this.questions.length < this._maxQuestions ? this.questions.length : this._maxQuestions,
                 correct: 0,
-                seconds: Constants.QUIZTIME - this.timer;
-        }
+                seconds: Constants.QUIZTIME - this.timer
+            }
             this.imageLazyLoad();
         });
     }

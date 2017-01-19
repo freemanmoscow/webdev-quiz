@@ -11,7 +11,7 @@ import {BrowserModule} from "@angular/platform-browser";
 @NgModule({
     imports: [HttpModule, BrowserModule],
     declarations: [QuestionComponent, ResultComponent, QuizApp, HeaderComponent],
-    providers: [HttpModule, QuizService, TimerService],
+    providers: [QuizService, TimerService],
     bootstrap: [QuizApp]
 })
 
