@@ -1,6 +1,6 @@
 import {Component, EventEmitter} from '@angular/core';
 import * as moment from 'moment';
-import {Result} from "../interfaces/interfaces";
+import {Result} from '../interfaces/interfaces';
 
 @Component({
     selector: 'quiz-result',

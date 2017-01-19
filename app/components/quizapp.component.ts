@@ -2,7 +2,7 @@ import {Component, OnInit, OnDestroy} from '@angular/core';
 import {Question, Result, QuestionAction} from '../interfaces/interfaces';
 import {QuizService} from '../services/question.service';
 import {TimerService} from '../services/timer.service';
-import {Constants} from "../config/app.constants";
+import {Constants} from '../config/app.constants';
 
 @Component({
     selector: 'quiz',
