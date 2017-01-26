@@ -19,7 +19,7 @@
   <!-- Configure System.js, our module loader -->
   <script src="resources/systemjs.config.js"></script>
   <script>
-    System.import('app').then(function(m) {console.log(m);}); // use 'app' for dev and 'app/app.min.js' for prod
+    System.import('app/app.min.js').then(function(m) {console.log(m);}); // use 'app' for dev and 'app/app.min.js' for prod
   </script>
   <!-- Stylesheet -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
