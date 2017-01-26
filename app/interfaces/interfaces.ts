@@ -1,18 +1,18 @@
 export interface Question {
-    image: string,
-    question: string,
-    answered: string,
-    answers: string[],
-    correctAnswer: string
+    image: string;
+    question: string;
+    answered: string;
+    answers: string[];
+    correctAnswer: string;
 }
 
 export interface QuestionAction {
-    action: string,
-    correct: boolean
+    action: string;
+    correct: boolean;
 }
 
 export interface Result {
-    total: number,
-    correct: number,
-    seconds: number
+    total: number;
+    correct: number;
+    seconds: number;
 }
