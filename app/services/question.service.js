@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var http_1 = require('@angular/http');
-require('rxjs/add/operator/map');
+var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
+require("rxjs/add/operator/map");
 var QuizService = (function () {
     function QuizService(http) {
         this.http = http;
@@ -20,11 +20,11 @@ var QuizService = (function () {
             .get('resources/api/questions.json')
             .map(function (response) { return response.json().questions; });
     };
-    QuizService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [http_1.Http])
-    ], QuizService);
     return QuizService;
 }());
+QuizService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [http_1.Http])
+], QuizService);
 exports.QuizService = QuizService;
 //# sourceMappingURL=question.service.js.map

@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var Rx_1 = require('rxjs/Rx');
+var core_1 = require("@angular/core");
+var Rx_1 = require("rxjs/Rx");
 var TimerService = (function () {
     function TimerService() {
         this.setTimer(0);
@@ -22,11 +22,11 @@ var TimerService = (function () {
         this.timerObservable = Rx_1.Observable.timer(initialTime, 1000);
         return this.timerObservable;
     };
-    TimerService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], TimerService);
     return TimerService;
 }());
+TimerService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], TimerService);
 exports.TimerService = TimerService;
 //# sourceMappingURL=timer.service.js.map

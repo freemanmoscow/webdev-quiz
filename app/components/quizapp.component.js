@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var question_service_1 = require('../services/question.service');
-var timer_service_1 = require('../services/timer.service');
-var app_constants_1 = require('../config/app.constants');
+var core_1 = require("@angular/core");
+var question_service_1 = require("../services/question.service");
+var timer_service_1 = require("../services/timer.service");
+var app_constants_1 = require("../config/app.constants");
 var QuizApp = (function () {
     function QuizApp(Quiz, TimerService) {
         this.Quiz = Quiz;
@@ -93,15 +93,15 @@ var QuizApp = (function () {
                 _this._timerObservable.unsubscribe();
         });
     };
-    QuizApp = __decorate([
-        core_1.Component({
-            selector: 'quiz',
-            template: "\n    <div class=\"row\">\n        <quiz-header\n          [tick]=\"timer\"\n          (restart)=\"onRestart($event)\">                    \n        </quiz-header>\n        <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n            <quiz-question\n              *ngIf=\"!_showResult\"\n              [question]=\"questions[_currentQuestion]\"\n              [totalQuestions]=\"result.total\"\n              [currentQuestion]=\"_currentQuestion\"\n              (questionAction)=\"onQuestionAction($event)\"\n              (answer)=\"onAnswer($event)\">\n            </quiz-question>\n            <quiz-result class=\"card horizontal white\"\n              *ngIf=\"_showResult\"\n              [result]=\"result\"\n              (restart)=\"onRestart($event)\">\n            </quiz-result>\n        </div>\n    </div>\n "
-        }), 
-        __metadata('design:paramtypes', [question_service_1.QuizService, timer_service_1.TimerService])
-    ], QuizApp);
     return QuizApp;
 }());
+QuizApp = __decorate([
+    core_1.Component({
+        selector: 'quiz',
+        template: "\n    <div class=\"row\">\n        <quiz-header\n          [tick]=\"timer\"\n          (restart)=\"onRestart($event)\">                    \n        </quiz-header>\n        <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n            <quiz-question\n              *ngIf=\"!_showResult\"\n              [question]=\"questions[_currentQuestion]\"\n              [totalQuestions]=\"result.total\"\n              [currentQuestion]=\"_currentQuestion\"\n              (questionAction)=\"onQuestionAction($event)\"\n              (answer)=\"onAnswer($event)\">\n            </quiz-question>\n            <quiz-result class=\"card horizontal white\"\n              *ngIf=\"_showResult\"\n              [result]=\"result\"\n              (restart)=\"onRestart($event)\">\n            </quiz-result>\n        </div>\n    </div>\n "
+    }),
+    __metadata("design:paramtypes", [question_service_1.QuizService, timer_service_1.TimerService])
+], QuizApp);
 exports.QuizApp = QuizApp;
 ;
 //# sourceMappingURL=quizapp.component.js.map
