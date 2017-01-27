@@ -78,8 +78,10 @@ export class QuizApp {
         if (message.action === 'next') {
             if (this.questions[this._currentQuestion + 1] && this._currentQuestion < this._maxQuestions - 1)
                 this._currentQuestion++;
-            else
+            else {
+                this._timerObservable.unsubscribe();
                 this._showResult = true;
+            }
         }
     }
 
@@ -120,10 +122,8 @@ export class QuizApp {
             .take(Constants.QUIZTIME + 1)
             .subscribe((response) => {
                 this.timer = response;
+                this.result.seconds = Constants.QUIZTIME - response;
                 this._showResult = this._showResult || this.timer <= 0;
-                if (this._showResult)
-                    this._timerObservable.unsubscribe();
             });
     }
-}
-;
+};

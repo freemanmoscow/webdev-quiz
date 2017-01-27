@@ -12,8 +12,8 @@
     "serve": "http-server . -p 8080",
     "postinstall": "npm run typings",
     "build": "npm run clean && tsc && cp ./app/app.js ./app/app.min.js",
-    "build_p": "npm run build && ./node_modules/.bin/browserify -s app ./app/app.js > ./app/bundle.js && npm run minify",
-    "build_prod": "npm run build && npm run minify",
+    "build_prod": "npm run build && ./node_modules/.bin/browserify -s app ./app/app.js > ./app/bundle.js && npm run minify",
+    "build_p": "npm run build && npm run minify",
     "minify": "./node_modules/.bin/uglifyjs app/bundle.js --screw-ie8 --compress --mangle --output app/app.min.js"
   },
   "keywords": [],

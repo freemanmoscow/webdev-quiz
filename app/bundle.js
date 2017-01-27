@@ -142,8 +142,10 @@ var QuizApp = (function () {
         if (message.action === 'next') {
             if (this.questions[this._currentQuestion + 1] && this._currentQuestion < this._maxQuestions - 1)
                 this._currentQuestion++;
-            else
+            else {
+                this._timerObservable.unsubscribe();
                 this._showResult = true;
+            }
         }
     };
     QuizApp.prototype.onRestart = function (message) {
@@ -182,9 +184,8 @@ var QuizApp = (function () {
             .take(app_constants_1.Constants.QUIZTIME + 1)
             .subscribe(function (response) {
             _this.timer = response;
+            _this.result.seconds = app_constants_1.Constants.QUIZTIME - response;
             _this._showResult = _this._showResult || _this.timer <= 0;
-            if (_this._showResult)
-                _this._timerObservable.unsubscribe();
         });
     };
     return QuizApp;
