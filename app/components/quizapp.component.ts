@@ -126,4 +126,4 @@ export class QuizApp {
                 this._showResult = this._showResult || this.timer <= 0;
             });
     }
-};
+}

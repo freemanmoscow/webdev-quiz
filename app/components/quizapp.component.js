@@ -104,5 +104,4 @@ QuizApp = __decorate([
     __metadata("design:paramtypes", [question_service_1.QuizService, timer_service_1.TimerService])
 ], QuizApp);
 exports.QuizApp = QuizApp;
-;
 //# sourceMappingURL=quizapp.component.js.map
