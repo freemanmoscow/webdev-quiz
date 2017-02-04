@@ -48,6 +48,11 @@ export class QuizApp {
         this._showResult = false;
         this._maxQuestions = Constants.NUMBEROFQUESTIONS;
         this._currentQuestion = 0;
+        this.result = {
+            total: 0,
+            correct: 0,
+            seconds: 0
+        };
         this.startTimer();
     }
 

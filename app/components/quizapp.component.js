@@ -20,6 +20,11 @@ var QuizApp = (function () {
         this._showResult = false;
         this._maxQuestions = app_constants_1.Constants.NUMBEROFQUESTIONS;
         this._currentQuestion = 0;
+        this.result = {
+            total: 0,
+            correct: 0,
+            seconds: 0
+        };
         this.startTimer();
     }
     QuizApp.prototype.ngOnInit = function () {
