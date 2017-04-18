@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var QuestionComponent = (function () {
     function QuestionComponent() {
@@ -16,7 +17,6 @@ var QuestionComponent = (function () {
     QuestionComponent.prototype.selectAnswer = function (answer) {
         this._selectedAnswer = answer;
         this.questionAction.emit({ action: 'answer', correct: this._selectedAnswer === this.question.correctAnswer });
-        //console.log(this.question);
     };
     QuestionComponent.prototype.isCorrect = function (answer) {
         return answer === this.question.correctAnswer && this._selectedAnswer !== undefined;
@@ -30,7 +30,6 @@ var QuestionComponent = (function () {
     QuestionComponent.prototype.nextQuestion = function () {
         this.questionAction.emit({ action: 'next', correct: this._selectedAnswer === this.question.correctAnswer });
         this._selectedAnswer = undefined;
-        //Materialize.showStaggeredList('quiz-question');
     };
     return QuestionComponent;
 }());

@@ -8,14 +8,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var question_service_1 = require("../services/question.service");
 var timer_service_1 = require("../services/timer.service");
 var app_constants_1 = require("../config/app.constants");
-var QuizApp = (function () {
-    function QuizApp(Quiz, TimerService) {
-        this.Quiz = Quiz;
-        this.TimerService = TimerService;
+var QuizApp = QuizApp_1 = (function () {
+    function QuizApp(quiz, timerService) {
+        this.quiz = quiz;
+        this.timerService = timerService;
         this._isLoaded = false;
         this._showResult = false;
         this._maxQuestions = app_constants_1.Constants.NUMBEROFQUESTIONS;
@@ -27,12 +28,20 @@ var QuizApp = (function () {
         };
         this.startTimer();
     }
+    QuizApp.arrayShuffle = function (src) {
+        for (var i = src.length, j = void 0; i; i--) {
+            j = parseInt(String(Math.random() * i), 10);
+            _a = [src[j], src[i - 1]], src[i - 1] = _a[0], src[j] = _a[1];
+        }
+        return src;
+        var _a;
+    };
     QuizApp.prototype.ngOnInit = function () {
         var _this = this;
-        this._getQuestionsObservable = this.Quiz.getQuestions().subscribe(function (response) {
+        this._getQuestionsObservable = this.quiz.getQuestions().subscribe(function (response) {
             _this.questions = response;
             _this._isLoaded = true;
-            _this.questions = _this.arrayShuffle(_this.questions);
+            _this.questions = QuizApp_1.arrayShuffle(_this.questions);
             _this.result = {
                 total: _this.questions.length < _this._maxQuestions ? _this.questions.length : _this._maxQuestions,
                 correct: 0,
@@ -47,12 +56,14 @@ var QuizApp = (function () {
     };
     QuizApp.prototype.onQuestionAction = function (message) {
         if (message.action === 'answer') {
-            if (message.correct)
+            if (message.correct) {
                 this.result.correct++;
+            }
         }
         if (message.action === 'next') {
-            if (this.questions[this._currentQuestion + 1] && this._currentQuestion < this._maxQuestions - 1)
+            if (this.questions[this._currentQuestion + 1] && this._currentQuestion < this._maxQuestions - 1) {
                 this._currentQuestion++;
+            }
             else {
                 this._timerObservable.unsubscribe();
                 this._showResult = true;
@@ -71,11 +82,6 @@ var QuizApp = (function () {
             this.startTimer();
         }
     };
-    QuizApp.prototype.arrayShuffle = function (src) {
-        for (var j, x, i = src.length; i; j = parseInt(String(Math.random() * i)), x = src[--i], src[i] = src[j], src[j] = x)
-            ;
-        return src;
-    };
     QuizApp.prototype.imageLazyLoad = function () {
         this._images = [];
         if (this.questions) {
@@ -90,7 +96,7 @@ var QuizApp = (function () {
     QuizApp.prototype.startTimer = function () {
         var _this = this;
         this.timer = 0;
-        this._timerObservable = this.TimerService.getTimer()
+        this._timerObservable = this.timerService.getTimer()
             .map(function (i) { return app_constants_1.Constants.QUIZTIME - i; })
             .take(app_constants_1.Constants.QUIZTIME + 1)
             .subscribe(function (response) {
@@ -101,12 +107,13 @@ var QuizApp = (function () {
     };
     return QuizApp;
 }());
-QuizApp = __decorate([
+QuizApp = QuizApp_1 = __decorate([
     core_1.Component({
         selector: 'quiz',
-        template: "\n    <div class=\"row\">\n        <quiz-header\n          [tick]=\"timer\"\n          (restart)=\"onRestart($event)\">                    \n        </quiz-header>\n        <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n            <quiz-question\n              *ngIf=\"!_showResult\"\n              [question]=\"questions[_currentQuestion]\"\n              [totalQuestions]=\"result.total\"\n              [currentQuestion]=\"_currentQuestion\"\n              (questionAction)=\"onQuestionAction($event)\"\n              (answer)=\"onAnswer($event)\">\n            </quiz-question>\n            <quiz-result class=\"card horizontal white\"\n              *ngIf=\"_showResult\"\n              [result]=\"result\"\n              (restart)=\"onRestart($event)\">\n            </quiz-result>\n        </div>\n    </div>\n "
+        template: "\n        <div class=\"row\">\n            <quiz-header\n                    [tick]=\"timer\"\n                    (restart)=\"onRestart($event)\">\n            </quiz-header>\n            <div id=\"quiz center-align\" class=\"col s12 l10 offset-l1\" *ngIf=\"_isLoaded\">\n                <quiz-question\n                        *ngIf=\"!_showResult\"\n                        [question]=\"questions[_currentQuestion]\"\n                        [totalQuestions]=\"result.total\"\n                        [currentQuestion]=\"_currentQuestion\"\n                        (questionAction)=\"onQuestionAction($event)\"\n                        (answer)=\"onAnswer($event)\">\n                </quiz-question>\n                <quiz-result class=\"card horizontal white\"\n                             *ngIf=\"_showResult\"\n                             [result]=\"result\"\n                             (restart)=\"onRestart($event)\">\n                </quiz-result>\n            </div>\n        </div>\n    "
     }),
     __metadata("design:paramtypes", [question_service_1.QuizService, timer_service_1.TimerService])
 ], QuizApp);
 exports.QuizApp = QuizApp;
+var QuizApp_1;
 //# sourceMappingURL=quizapp.component.js.map

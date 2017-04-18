@@ -1,6 +1,6 @@
 import {Component, EventEmitter} from '@angular/core';
 import * as moment from 'moment';
-import {Result} from '../interfaces/interfaces';
+import {IResult} from '../interfaces/interfaces';
 
 @Component({
     selector: 'quiz-result',
@@ -32,7 +32,7 @@ import {Result} from '../interfaces/interfaces';
 })
 
 export class ResultComponent {
-    result: Result;
+    result: IResult;
     restart: EventEmitter<string>;
     moment: any;
 
@@ -42,7 +42,7 @@ export class ResultComponent {
     }
 
     resetQuestions(): void {
-        this.restart.emit("restart");
+        this.restart.emit('restart');
     }
 
     resultGrade(): number {

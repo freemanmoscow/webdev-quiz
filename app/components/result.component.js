@@ -8,6 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var moment = require("moment");
 var ResultComponent = (function () {
@@ -16,7 +17,7 @@ var ResultComponent = (function () {
         this.moment = moment;
     }
     ResultComponent.prototype.resetQuestions = function () {
-        this.restart.emit("restart");
+        this.restart.emit('restart');
     };
     ResultComponent.prototype.resultGrade = function () {
         return Math.ceil(this.result.correct / this.result.total * 3);

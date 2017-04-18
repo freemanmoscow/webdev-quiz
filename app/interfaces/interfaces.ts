@@ -1,4 +1,4 @@
-export interface Question {
+export interface IQuestion {
     image: string;
     question: string;
     answered: string;
@@ -6,12 +6,12 @@ export interface Question {
     correctAnswer: string;
 }
 
-export interface QuestionAction {
+export interface IQuestionAction {
     action: string;
     correct: boolean;
 }
 
-export interface Result {
+export interface IResult {
     total: number;
     correct: number;
     seconds: number;

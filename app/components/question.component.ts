@@ -1,5 +1,5 @@
 import {Component, EventEmitter} from '@angular/core';
-import {Question, QuestionAction} from '../interfaces/interfaces';
+import {IQuestion, IQuestionAction} from '../interfaces/interfaces';
 
 @Component({
     selector: 'quiz-question',
@@ -38,25 +38,24 @@ import {Question, QuestionAction} from '../interfaces/interfaces';
 })
 
 export class QuestionComponent {
-    question: Question;
-    questionAction: EventEmitter<QuestionAction>;
+    question: IQuestion;
+    questionAction: EventEmitter<IQuestionAction>;
     private _selectedAnswer: string;
 
     constructor() {
-        this.questionAction = new EventEmitter<QuestionAction>();
+        this.questionAction = new EventEmitter<IQuestionAction>();
     }
 
-    selectAnswer(answer): void {
+    selectAnswer(answer: string): void {
         this._selectedAnswer = answer;
         this.questionAction.emit({action: 'answer', correct: this._selectedAnswer === this.question.correctAnswer});
-        //console.log(this.question);
     }
 
-    isCorrect(answer): boolean {
+    isCorrect(answer: string): boolean {
         return answer === this.question.correctAnswer && this._selectedAnswer !== undefined;
     }
 
-    isIncorrect(answer): boolean {
+    isIncorrect(answer: string): boolean {
         return answer !== this.question.correctAnswer && this._selectedAnswer === answer;
     }
 
@@ -67,6 +66,5 @@ export class QuestionComponent {
     nextQuestion(): void {
         this.questionAction.emit({action: 'next', correct: this._selectedAnswer === this.question.correctAnswer});
         this._selectedAnswer = undefined;
-        //Materialize.showStaggeredList('quiz-question');
     }
 }
