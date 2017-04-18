@@ -13,8 +13,7 @@
     "serve": "http-server . -p 8080",
     "postinstall": "npm run typings",
     "build": "npm run clean && tsc && cp ./app/app.js ./app/app.min.js && npm run sass",
-    "build_prod": "npm run build && cp ./node_modules/pickadate/lib/picker.js ./node_modules/materialize-css/bin/ && ./node_modules/.bin/browserify -s app ./app/app.js > ./app/bundle.js && npm run minify && npm run sass && rm ./node_modules/materialize-css/bin/picker.js",
-    "build_p": "npm run build && npm run minify",
+    "build:prod": "npm run build && cp ./node_modules/pickadate/lib/picker.js ./node_modules/materialize-css/bin/ && ./node_modules/.bin/browserify -s app ./app/app.js > ./app/bundle.js && npm run minify && npm run sass && rm ./node_modules/materialize-css/bin/picker.js",
     "minify": "./node_modules/.bin/uglifyjs app/bundle.js --screw-ie8 --compress --mangle --output app/app.min.js",
     "sass": "sass app/styles/styles.scss app/styles/styles.css --style compressed",
     "sass:watch": "sass --watch app:app --style compressed"
