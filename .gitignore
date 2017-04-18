@@ -1,2 +1,9 @@
-node_modules/
 *.log
+*~
+.DS_Store
+npm-debug.log
+.idea
+node_modules
+_test-output
+_temp
+.sass-cache

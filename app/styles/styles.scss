@@ -1,0 +1,249 @@
+@import "../../node_modules/materialize-css/sass/materialize";
+
+.hidden {
+  display: none;
+}
+
+.disabled {
+  pointer-events: none;
+  background-color: #e0e0e0;
+}
+
+.result {
+  height: 10rem;
+  justify-content: center;
+  font-size: 2rem;
+  flex-direction: column;
+
+  &.good {
+    background-color: #BBFFBB;
+    .text:after {
+      content: " 👍";
+    }
+  }
+
+  &.bad {
+    background-color: #FFCCCC;
+    .text:after {
+      content: " 👎";
+    }
+  }
+
+  &.ok {
+    background-color: #fffacc;
+    .text:after {
+      content: " 👌";
+    }
+  }
+
+  .seconds {
+    display: block;
+  }
+}
+
+.is-correct {
+  background-color: #BBFFBB;
+}
+
+.is-incorrect {
+  background-color: #FFBBBB;
+}
+
+quiz-question {
+  .answers .card-panel {
+    height: 75px;
+    display: flex;
+  }
+
+  .row.answers {
+    margin-bottom: 0;
+  }
+}
+
+nav .brand-logo {
+  width: 100%;
+}
+
+nav li {
+  position: relative;
+}
+
+#preloader {
+  position: fixed;
+  display: flex;
+  z-index: 1000;
+  transform: translateZ(1000px);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.5);
+  overflow: hidden;
+
+  .preloader-wrapper {
+    left: calc(50% - 32px);
+    top: calc(50% - 32px);
+    position: fixed;
+  }
+}
+
+.question {
+  .text {
+    justify-content: center;
+  }
+
+  .image {
+    background-color: white;
+    height: 100px;
+    width: 100px;
+    padding: 15px;
+    border-radius: 50%;
+    justify-content: center;
+    overflow: hidden;
+
+    img {
+      width: auto;
+      height: auto;
+      max-height: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+.timer {
+  color: #000000;
+}
+
+.card {
+  background: transparent;
+
+  &.card-stacked {
+    margin: 0;
+  }
+
+  .card-content {
+    padding: 20px 40px;
+  }
+}
+
+.nav-wrapper {
+  a {
+    color: black;
+  }
+
+  .github-button {
+    a.btn {
+      color: white;
+      padding: 0 1.8rem 0 1.3rem;
+    }
+    i {
+      font-size: 1.3rem;
+      line-height: 36px;
+    }
+  }
+}
+
+.progress {
+  margin: 0;
+}
+
+.menuitem .reload {
+  font-size: 1.6rem;
+}
+
+.timer {
+  &.timeout {
+    animation: animation-timeout 1s ease 6;
+  }
+
+  &.done {
+    color: #FF0000;
+  }
+}
+
+@keyframes animation-timeout {
+  from {
+    color: #FF0000;
+  }
+  to {
+    color: #000000;
+  }
+}
+
+@media only screen and (min-width: 993px) {
+  quiz-question .row .col.l6.card-panel:nth-child(even) {
+    margin-left: 1.5%;
+  }
+
+  quiz-question .row .col.l6.card-panel:nth-child(odd) {
+    margin-right: 1.5%;
+  }
+
+  quiz-question .row .col.l6.card-panel {
+    width: 48.5%;
+  }
+
+  nav .brand-logo {
+    margin-left: 20px;
+    width: 55%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card-panel.question {
+    padding: 5px;
+  }
+
+  .card-panel {
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  .card .card-content {
+    padding: 5px 20px;
+  }
+
+  .question .image {
+    width: 75px;
+    height: 75px;
+    padding: 10px;
+  }
+
+  .question.row .col {
+    padding: 5px;
+  }
+
+  h5 {
+    font-size: 1.2rem;
+  }
+
+  .row .col.s9 {
+    width: 100%;
+  }
+
+  quiz-question .answers .card-panel {
+    min-height: 50px;
+    height: auto;
+  }
+
+  nav .brand-logo {
+    font-size: 1.5rem;
+  }
+
+  .card .card-action {
+    padding: 7px;
+  }
+
+  .btn-large {
+    height: 45px;
+    line-height: 45px;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+
+  .result {
+    font-size: 1.25rem;
+  }
+}

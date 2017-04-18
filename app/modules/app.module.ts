@@ -7,9 +7,10 @@ import {HeaderComponent} from '../components/header.component';
 import {NgModule} from '@angular/core';
 import {HttpModule} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
+import {MaterializeModule} from 'angular2-materialize';
 
 @NgModule({
-    imports: [HttpModule, BrowserModule],
+    imports: [HttpModule, BrowserModule, MaterializeModule],
     declarations: [QuestionComponent, ResultComponent, QuizApp, HeaderComponent],
     providers: [QuizService, TimerService],
     bootstrap: [QuizApp]
